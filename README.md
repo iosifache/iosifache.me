@@ -22,6 +22,7 @@ This repository holds a blog with bits of useful information.
 - Disabling Next's image optimization feature by setting `images.unoptimized` to `true` in `next.config.js`
 - Setting `fallback` to `false` in `pages/[pageId].tsx`
 - Removing all occurances of the `GitHubShareButton` component and its classes
+- Manual build and deployment to Cloudflare as the convertion from Notion to HTML may generate ~~ugly~~ inappropriate content
 
 ## Setup 🔧
 
