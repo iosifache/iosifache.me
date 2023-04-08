@@ -1,6 +1,5 @@
 ---
 title: Binary Analysis
-author: iosifache
 tags:
   - elf
   - pe

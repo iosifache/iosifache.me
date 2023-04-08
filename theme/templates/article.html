@@ -14,11 +14,12 @@
   >
 </h1>
 <div class="post-info">
+  {% if not article.relative_source_path.startswith('_') %}
   <b>Date</b>:
   <time class="published" datetime="{{ article.date.isoformat() }}">
     {{ article.locale_date }}
   </time>
-  {% if article.modified %}
+  {% endif %} {% if article.modified %}
   <time class="modified" datetime="{{ article.modified.isoformat() }}">
     {{ article.locale_modified }}
   </time>
