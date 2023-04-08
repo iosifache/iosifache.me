@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "blog"
+version = "0.1.0"
+description = "Personal blog"
+authors = ["George-Iosif Andrei <hi@iosifache.me>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pelican = {extras = ["markdown"], version = "^4.8.0"}
+pelican-yaml-metadata = {git = "https://github.com/pR0Ps/pelican-yaml-metadata.git"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
