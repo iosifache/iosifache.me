@@ -2,11 +2,12 @@ AUTHOR = 'George-Andrei Iosif'
 SITENAME = '@iosifache'
 SITEURL = ''
 
-PATH = '../content'
+PATH = './content'
 
 TIMEZONE = 'Europe/Bucharest'
 
 DEFAULT_LANG = 'en'
+THEME = "./theme"
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
