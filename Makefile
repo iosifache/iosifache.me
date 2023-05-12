@@ -68,5 +68,7 @@ devserver-global:
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
+update-reqs:
+	poetry export --without-hashes > requirements.txt
 
 .PHONY: html help clean regenerate serve serve-global devserver publish 
