@@ -11,7 +11,8 @@ This repository holds a blog with bits of useful information.
 
 ## Usage 🧰
 
-Generate and serve the website with `poetry run pelican -r -l`.
+1. Enter the environment: `poetry shell`.
+2. Serve the website: `make serve`.
 
 ## Resources 📚
 
