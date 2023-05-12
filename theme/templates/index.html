@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <section id="content">
-  <h1>All Pages</h1>
+  <h1>Articles</h1>
   <ul id="post-list">
     {% for article in articles_page.object_list %}
     <li>
@@ -13,9 +13,11 @@
     </li>
     {% endfor %}
   </ul>
-  <!-- /#posts-list -->
   {% if articles_page.has_other_pages() %} {% include 'pagination.html' %} {%
   endif %}
+  <blockquote>
+    🗂️ If you are interested in a specific topic, please use
+    <a href="/tags">this page</a>.
+  </blockquote>
 </section>
-<!-- /#content -->
 {% endblock content %}
