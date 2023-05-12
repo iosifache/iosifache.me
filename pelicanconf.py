@@ -32,3 +32,5 @@ DEFAULT_PAGINATION = False
 #RELATIVE_URLS = True
 
 PLUGINS = ["yaml_metadata"]
+
+FAVICON = "theme/images/favicon.png"

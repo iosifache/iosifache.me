@@ -20,7 +20,9 @@
       rel="stylesheet"
     />
 
-    {% if FEED_ALL_ATOM %}
+    {% if FAVICON %}
+    <link rel="icon" href="{{ SITEURL }}/{{ FAVICON }}" type="image/x-icon" />
+    {% endif %} {% if FEED_ALL_ATOM %}
     <link
       href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
       type="application/atom+xml"
