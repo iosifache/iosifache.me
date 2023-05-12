@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Trends in Twitter’s Architecture </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="architecture" />
+<meta name="tags" content="startup" />
+<meta name="tags" content="twitter" />
+<meta name="tags" content="study-case" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/twitter-architecture-trends.html"
+    rel="bookmark"
+    title="Permalink to Trends in Twitter’s Architecture"
+    >Trends in Twitter’s Architecture</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-02-05T00:00:00+02:00">
+    Sun 05 February 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/architecture.html"
+      ><small class="chip">architecture</small></a
+    >
+    <a href="/tag/startup.html"
+      ><small class="chip">startup</small></a
+    >
+    <a href="/tag/twitter.html"
+      ><small class="chip">twitter</small></a
+    >
+    <a href="/tag/study-case.html"
+      ><small class="chip">study-case</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<h1>Twitter In a Nutshell</h1>
+<p>Twitter is an <strong>online service</strong> that uses 280-character messages (named tweets) for two primary roles:</p>
+<ul>
+<li><strong>Social media</strong>: Users can share their content and consume the one created by others.</li>
+<li><strong>Social networking</strong>: Users can expand their network by connecting with others who have similar interests.</li>
+</ul>
+<p>Jack Dorsey, Noah Glass, Biz Stone, and Evan Williams created Twitter in March 2006. The following year, they launched it. Twitter grew from 50 million users in 2010 to 300 million in 2015. The usage slowly increased to 400 million in 2022. In the same year, Elon Musk bought all shares (TWTR, listed on New York Stock Exchange), and Twitter became a privately-held company.</p>
+<p><img alt="Monthy Active Users" src="/images/twitter-architecture-trends/mau.webp"></p>
+<h1>Modus Operandi</h1>
+<p>We can consider Twitter a <strong>consumption platform</strong>. In 2013, Raffi Krikorian, the VP of Engineering, stated that there were 300.000 queries and only 6.000 writes per second.</p>
+<p>Some statistics from 2022 support consumption even more. The website has 400 million active users and 60 billion tweets per month. This means that each user has 15 tweets per month on average. In addition, users spend the remaining 3 hours per month (6 minutes per day) reading other people's tweets.</p>
+<p>This characteristic is relevant for architectural reasons. Engineering teams <strong>need to optimize the read path of the service-oriented architecture</strong>. The decision comes with a possible performance compromise on the writing path.</p>
+<p>The user relationship can be broadly divided into the following categories:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Push, i.e. server-initiated</th>
+<th>Pull, i.e. user-initiated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Targeted, i.e. detected by algorithms to be relevant for a user</td>
+<td>A stream of tweets pushed to a user. It helps to maintain the timeline experience after the initial load.</td>
+<td>Data that Twitter consider to be relevant for you. Like timeline API.</td>
+</tr>
+<tr>
+<td>Queried, i.e. specifically requested by the user</td>
+<td>A stream of tweets pushed to a user, from tracked terms or followed accounts.</td>
+<td>A query for specific tweets (for example, containing a specific term). Like Search API.</td>
+</tr>
+</tbody>
+</table>
+<h1>Architectural Evolution</h1>
+<p>We can create the following list of architectural observations by analyzing many resources from the Internet (linked in the last section). Their goal is not to provide a theoretical model for why Twitter engineers made those decisions. We can only <strong>deduce the first principles</strong> and <strong>back them up with concrete examples</strong>.</p>
+<h2>Making Product Features More Important Than Architectural Perfection</h2>
+<p>Many engineers declared that the source code of Twitter is in a completely <strong>unstable, but functioning state</strong>. Among them are the ones fired after the <a href="https://abcnews.go.com/Business/twitter-sends-email-employees-announcing-layoffs-friday/story?id=92635005">recent layoff</a>. This state ensures the functioning of the application, but they accumulated too much technical debt.</p>
+<p>It is not sure if this modus operandi continued after 2013. In his presentation at InfoQ, Raffi Krikorian confirmed the existence of a <strong>dedicated architecture team</strong>. Its purposes were designing a holistic architecture and maintaining a list of technical debts, which engineers wanted to fix.</p>
+<p>These two examples depict a common theme in companies with explosive growth. Twitter prioritizes product features over architectural perfection. The decision may lead to scars in the form of debt, but the company’s purpose (to keep the users involved and satisfied) is accomplished.</p>
+<h2>Migrating from Monoliths to SOA</h2>
+<p>In the same presentation from 2013, Raffi presented a diagram with the architecture. The <strong>monolithic service</strong>, named Monorail, covered three layers: routing, presentation, and logic. Its roots can be traced back to the old web stack that they used for their initial launch. He stated that its team's goal is to divide the service into smaller, isolated services. They also believed that this change would improve speed, reliability, and development speed.</p>
+<p><img alt="Monorail Architecture" src="/images/twitter-architecture-trends/monorail.jpg"></p>
+<p>A 2013 presentation provides additional evidence of the continuous architectural progress. Jeremy Cloud, a team leader at Tweet Service, was the speaker.</p>
+<p>Elon Musk tweeted a picture of two combined architectures on November 19, 2022: the current and the desired one (with dashed lines). We can see that the Monorail service has vanished, replaced by <strong>smaller and more specialized services</strong>.</p>
+<p><img alt="Elon's Architecture" src="/images/twitter-architecture-trends/elon-arch.jpg"></p>
+<h2>Choosing the Best Technology for Their Needs</h2>
+<p>Besides its size, the <strong>Ruby on Rails</strong> monolith suffered from another disadvantage. The programming language is not optimized for concurrency. The latter is mandatory for scaling the service under the growth in usage.</p>
+<p>In 2013, Jeremy Cloud stated that the presentation and logic layers contained JVM services running <strong>Scala</strong>. It indicates that engineers are not afraid to abandon one technology in favor of another to achieve greater scalability.</p>
+<p>Another observed change reinforces the point. Before 2010, Twitter only used <strong>MySQL</strong> to store relevant data, such as user information and timelines. In 2010, they used an in-house framework called Gizzard to replicate MySQL databases across multiple servers. However, standard structured databases no longer met their requirements after that year, so they incorporated <strong>advanced storage technologies</strong> such as:</p>
+<ul>
+<li>Caching via Redis;</li>
+<li>Searching via Lucine;</li>
+<li>Data clustering via Hadoop; and</li>
+<li>Blob (e.g. users' images) databases via Blobstore, an in-house software.</li>
+</ul>
+<h2>Obtaining  Physical Layer Independence</h2>
+<p>Before 2010, Twitter used a <strong>third-party hosting provider</strong>'s infrastructure. They decided to become more independent on the physical layer, so the first design of the on-premise network was born in the same year. In 2015, Twitter had <strong>points of presence</strong> on five continents and <strong>data centers</strong> housing hundreds of thousands of servers.</p>
+<p>Partly Cloud was announced in 2018 as a collaboration with <strong>Google Cloud</strong>. It is a hybrid infrastructure for hosting Hadoop clusters and some components of the data platform, which ensured analytical capabilities.</p>
+<p><img alt="Partly Cloud" src="/images/twitter-architecture-trends/gcp.png"></p>
+<h2>Making Changes Gradually</h2>
+<p>Developers adapted an <strong>Agile approach</strong> by deploying often and incrementally. Deploys consisted in:</p>
+<ol>
+<li>Making small changes;</li>
+<li>Verifying them in production with small batches of users;</li>
+<li>Making adjustments in case of malfunctioning; and</li>
+<li>Repeating.</li>
+</ol>
+<p>Jeremy Cloud detailed other resilience techniques, such as a <strong>dark mode</strong> for each feature. It consists of the ability to disable the feature in critical conditions (e.g. service failure).</p>
+<h2>Relying on Third-Parties for Specialized Software</h2>
+<p>Twitter builds a lot of in-house software. Some of it is publicly available on <a href="https://github.com/twitter">their GitHub organization</a>. However, there are times when engineers do not need to devote time to a specific problem. This is not because they cannot build the required software, but a lack of fit between the technical issues and the company's revenue streams.</p>
+<p>An example is again the migration of the data platform to <strong>Google Cloud</strong>. GCP already has mature tools for data analysis and machine learning in its software-as-a-service suite:</p>
+<ul>
+<li><a href="https://cloud.google.com/bigquery/">BigQuery</a>, an enterprise data warehouse with a SQL engine; and</li>
+<li><a href="https://cloud.google.com/looker-studio">Looker Studio</a> (known before December 2022 as Data Studio), a big data visualization tool.</li>
+</ul>
+<p>2021 was the year of another migration to third-party software. Before, Twitter used an in-house solution, named Logles. The main issue was performance-related: only 10% of the submitted logs ended up being stored on disk, the rest being dropped due to rate limits.</p>
+<p>They successfully migrated to <strong>Splunk Enterprise</strong>. The logging architecture consisted in:</p>
+<ul>
+<li>Host forwarders, installed on each server; and</li>
+<li>Rsyslog ones, that received logging messages from network equipment.</li>
+</ul>
+<p>The changes offered them a 400% increase in the log processing power, better configurability, a robust API, and new advanced features (e.g. scheduled searches).</p>
+<h1>Future Changes</h1>
+<p>It is unclear what will happen with Twitter’s architecture in the following years. The only thing that we, as outsiders, can do is to watch the last months' evolution and to (try to) predict the future.</p>
+<p>After Elon’s arrival, Twitter added <strong>many features</strong>, the most notable being Twitter Blue, long-form tweets, and an edit feature for tweets. Some events contributed to altering the reputation of the platform:</p>
+<ul>
+<li>**<a href="https://techcrunch.com/2022/12/28/twitter-down-outage/?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAADFkh-uz1saLakfJaLIirvfw1Pgpes__g-AdGsII8SK4Hlp-E57iI2HB_1G7tXDszyQ80k81RNLohhlKa0LwI8oLb0jws0n3ro5WinMfTxRh0X0cA11BLvaxIS1ewvu4i2N_XN4mO5XPr1xUs9AaXNF01j-eBo2kqZI0MvmFUpoZ">Outage** produced by changes in the backend architecture;</a> and</li>
+<li>**<a href="https://www.reuters.com/technology/twitter-hacked-200-million-user-email-addresses-leaked-researcher-says-2023-01-05/">Information leaks**, where millions of users’ emails were stolen by black-hat hackers</a>.</li>
+</ul>
+<p>But to orient the discussion to the future, an opinion to consider is Dave Troy’s. He states that Elon plan is to slow down the development of the current technology and to free the bird from the closed-source cage.</p>
+<p><a href="https://twitter.com/davetroy/status/1586166535592509440">
+<br>
+<blockquote>
+  🐦 Elon and Jack will work together to shut down the existing Twitter tech stack and move it to Bluesky. Anyone paying attention would know this. That’s why he’s freezing development on the existing platform. It will take a little time, but this is what they’re up to. Watch. - @davetroy
+  </blockquote></p>
+<p></a></p>
+<p>In this way, Twitter will presumably use Bluesky’s <strong>The AT Protocol</strong>, an open and decentralized standard for social media. Jack Dorsey announced Bluesky in 2019. Despite the 13 million dollar investment to continue its research, it is declared as independent of Twitter.</p>
+<p><a href="https://twitter.com/jack/status/1375126834958884865?s=20&t=5RjikqZJLI8JsERHdeNlSg">
+<br>
+<blockquote>
+  🐦 A decentralized open-source protocol for social media is our vision and work for the long term. We continue the cycle mentioned earlier of constantly improving our approach to content moderation in the short term. I hope our discussion today will focus on more enduring solutions. - @jack
+  </blockquote></p>
+<p></a></p>
+<p><a href="https://twitter.com/jack/status/1518772756069773313?s=20&t=yE1fhXr-uDp9lON5eTfGag">
+<br>
+<blockquote>
+  🐦 In principle, I don’t believe anyone should own or run Twitter. It wants to be a public good at a protocol level, not a company. Solving for the problem of it being a company however, Elon is the singular solution I trust. I trust his mission to extend the light of consciousness. - @jack
+  </blockquote></p>
+<p></a></p>
+<h1>Conclusions</h1>
+<p>Deducing details about a private company's architecture can be fraught with assumptions. You can not tell whether the facts are black and white, but you can find evidence that things are one way or another.</p>
+<p>Regarding Twitter, the precise architecture is still unknown, but we can now make an educated guess based on the information presented. In any case, the achieved scale, and the architectural principles used at the time are impressive.</p>
+<hr>
+<h1>References</h1>
+<ul>
+<li>23 Oct 2012: <a href="https://www.infoq.com/presentations/Real-Time-Delivery-Twitter">Real-Time Delivery Architecture at Twitter</a></li>
+<li>03 Jul 2013: <a href="https://www.infoq.com/presentations/twitter-soa/">Decomposing Twitter: Adventures in Service-Oriented Architecture</a></li>
+<li>08 Jul 2013: <a href="http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html">The Architecture Twitter Uses to Deal with 150M Active Users, 300K QPS, a 22 MB/S Firehose, and Send Tweets in Under 5 Seconds</a></li>
+<li>19 Jan 2017: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2017/the-infrastructure-behind-twitter-scale">The Infrastructure Behind Twitter: Scale</a></li>
+<li>3 May 2018: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/a-new-collaboration-with-google-cloud">A new collaboration with Google Cloud</a></li>
+<li>07 Apr 2019: <a href="https://www.youtube.com/watch?v=rBNFwdVDlyo">Twitter's GCP Architecture for Its Petabyte-Scale Data Storage in GCS</a></li>
+<li>13 Aug 2021: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2021/logging-at-twitter-updated">Logging at Twitter: Updated</a></li>
+<li>16 Mar 2022: <a href="https://blog.hootsuite.com/twitter-statistics/">33 Twitter Stats That Matter to Marketers in 2023</a></li>
+<li>08 Oct 2022: <a href="https://www.youtube.com/watch?v=Pym8Evbf7Ak">How Twitter maximizes performance with BigQuery</a></li>
+<li>31 Oct 2022: <a href="https://news.yahoo.com/bluesky-potential-twitter-alternative-being-111738532.html">What is Bluesky, the potential Twitter alternative being tested by former CEO Jack Dorsey?</a></li>
+<li>19 Nov 2022: <a href="https://miro.com/app/board/uXjVPBnTJmM=/">Twitter Architecture Explained</a></li>
+<li>27 Nov 2022: <a href="https://www.youtube.com/watch?v=sxtqbUQqoNc">Leaked Twitter Architecture? Reaction and Analysis</a></li>
+</ul>     </main>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Chrome Forensics with ForensiX </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="forensics" />
+<meta name="tags" content="docker" />
+<meta name="tags" content="walkthrough" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/forensix-walktrough.html"
+    rel="bookmark"
+    title="Permalink to Chrome Forensics with ForensiX"
+    >Chrome Forensics with ForensiX</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2022-11-05T00:00:00+02:00">
+    Sat 05 November 2022
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/forensics.html"
+      ><small class="chip">forensics</small></a
+    >
+    <a href="/tag/docker.html"
+      ><small class="chip">docker</small></a
+    >
+    <a href="/tag/walkthrough.html"
+      ><small class="chip">walkthrough</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<h1>Scenario</h1>
+<p>Given a dump of an <code>%APPDATA%</code> folder from a Windows host, retrieve Chrome usage data.</p>
+<p>The above-mentioned folder is taken from the <a href="https://github.com/8061xjl/ctfarchive-sctf-3.0/tree/main/files/forensics/digging-in-the-dump">Digging In The Dump</a> challenge, part of Sieberrsec CTF 3.0.</p>
+<h1>Choosing a Tool</h1>
+<p>As my primary operating system is Ubuntu, I skipped tools like <a href="https://www.nirsoft.net/utils/browsing_history_view.html">BrowsingHistoryView</a> and <a href="https://www.mitec.cz/ihb.html">MiTeC Internet History Browser</a>, which are Windows-only.</p>
+<p>Searching out on GitHub, I found the bachelors project of <a href="https://github.com/ChmaraX">Adam Chmara</a>, <a href="https://github.com/ChmaraX/forensix">ForensiX</a>. It is "<em>Google Chrome forensic tool to process, analyze and visualize browsing artifacts</em>", built on Docker Compose and with a beautiful, web-based user interface.</p>
+<p>Another alternative was <a href="https://github.com/browser-history/browser-history"><code>browser-history</code></a>, a Python3 library and CLI tool which supports the most popular browsers.</p>
+<h1>Filtering the Artifacts</h1>
+<ol>
+<li>Create a folder to dump the multipart archive: <code>mkdir data</code>.</li>
+<li>
+<p>Download the challenge files with:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">for</span><span class="w"> </span><span class="nt">i</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="p">{</span><span class="err">1..6</span><span class="p">}</span><span class="w"> </span><span class="nt">do</span><span class="o">;</span><span class="w"> </span><span class="nt">wget</span><span class="w"> </span><span class="nt">https</span><span class="o">://</span><span class="nt">github</span><span class="p">.</span><span class="nc">com</span><span class="o">/</span><span class="nt">8061xjl</span><span class="o">/</span><span class="nt">ctfarchive-sctf-3</span><span class="p">.</span><span class="nc">0</span><span class="o">/</span><span class="nt">blob</span><span class="o">/</span><span class="nt">main</span><span class="o">/</span><span class="nt">files</span><span class="o">/</span><span class="nt">forensics</span><span class="o">/</span><span class="nt">digging-in-the-dump</span><span class="o">/</span><span class="nt">AppData</span><span class="p">.</span><span class="nc">zip</span><span class="p">.</span><span class="nc">00</span><span class="o">$</span><span class="nt">i</span><span class="err">\</span><span class="o">?</span><span class="nt">raw</span><span class="err">\</span><span class="o">=</span><span class="nt">true</span><span class="w"> </span><span class="nt">-o</span><span class="w"> </span><span class="nt">data</span><span class="o">/</span><span class="nt">AppData</span><span class="p">.</span><span class="nc">zip</span><span class="p">.</span><span class="nc">part</span><span class="o">$</span><span class="nt">i</span><span class="o">;</span><span class="w"> </span><span class="nt">done</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Recreate the original archive from its parts: <code>cat data/AppData.zip.part* &gt; data/AppData.zip</code>.</p>
+</li>
+<li>
+<p>Check the validity of the created archive:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>unzip<span class="w"> </span>-t<span class="w"> </span>../data/AppData.zip
+Archive:<span class="w">  </span>../data/AppData.zip
+warning<span class="w"> </span><span class="o">[</span>../data/AppData.zip<span class="o">]</span>:<span class="w">  </span><span class="m">50331648</span><span class="w"> </span>extra<span class="w"> </span>bytes<span class="w"> </span>at<span class="w"> </span>beginning<span class="w"> </span>or<span class="w"> </span>within<span class="w"> </span>zipfile
+<span class="o">(</span>attempting<span class="w"> </span>to<span class="w"> </span>process<span class="w"> </span>anyway<span class="o">)</span>
+<span class="w">    </span>testing:<span class="w"> </span>AppData/<span class="w">                 </span>OK
+<span class="w">    </span>testing:<span class="w"> </span>AppData/Local/<span class="w">           </span>OK
+<span class="w">    </span>testing:<span class="w"> </span>AppData/LocalLow/<span class="w">        </span>OK
+<span class="w">    </span><span class="o">[</span>...<span class="o">]</span>
+No<span class="w"> </span>errors<span class="w"> </span>detected<span class="w"> </span><span class="k">in</span><span class="w"> </span>compressed<span class="w"> </span>data<span class="w"> </span>of<span class="w"> </span>../data/AppData.zip.
+</code></pre></div>
+
+</li>
+<li>
+<p>Extract the content, namely the <code>AppData</code> folder: <code>unzip data/AppData.zip -d data/AppData</code>.</p>
+</li>
+<li>List the files linked to the default Chrome profile:<div class="highlight"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="n">data</span><span class="o">/</span><span class="n">AppData</span><span class="o">/</span><span class="n">Local</span><span class="o">/</span><span class="n">Google</span><span class="o">/</span><span class="n">Chrome</span><span class="o">/</span><span class="n">User</span>\<span class="w"> </span><span class="n">Data</span><span class="o">/</span><span class="n">Default</span>
+<span class="s1">&#39;Affiliation Database&#39;</span><span class="w">           </span><span class="n">Favicons</span><span class="o">-</span><span class="n">journal</span><span class="w">                          </span><span class="s1">&#39;Login Data For Account-journal&#39;</span><span class="w">               </span><span class="n">shared_proto_db</span>
+<span class="s1">&#39;Affiliation Database-journal&#39;</span><span class="w">  </span><span class="s1">&#39;Feature Engagement Tracker&#39;</span><span class="w">               </span><span class="s1">&#39;Login Data-journal&#39;</span><span class="w">                           </span><span class="n">Shortcuts</span>
+<span class="n">AutofillStrikeDatabase</span><span class="w">         </span><span class="s1">&#39;GCM Store&#39;</span><span class="w">                                 </span><span class="n">Network</span><span class="w">                                       </span><span class="n">Shortcuts</span><span class="o">-</span><span class="n">journal</span>
+<span class="n">blob_storage</span><span class="w">                   </span><span class="s1">&#39;Google Profile.ico&#39;</span><span class="w">                       </span><span class="s1">&#39;Network Action Predictor&#39;</span><span class="w">                    </span><span class="s1">&#39;Site Characteristics Database&#39;</span>
+<span class="n">BudgetDatabase</span><span class="w">                  </span><span class="n">GPUCache</span><span class="w">                                  </span><span class="s1">&#39;Network Action Predictor-journal&#39;</span><span class="w">             </span><span class="n">Storage</span>
+<span class="n">Cache</span><span class="w">                           </span><span class="n">heavy_ad_intervention_opt_out</span><span class="o">.</span><span class="n">db</span><span class="w">           </span><span class="n">optimization_guide_hint_cache_store</span><span class="w">          </span><span class="s1">&#39;Sync Data&#39;</span>
+<span class="s1">&#39;Code Cache&#39;</span><span class="w">                     </span><span class="n">heavy_ad_intervention_opt_out</span><span class="o">.</span><span class="n">db</span><span class="o">-</span><span class="n">journal</span><span class="w">   </span><span class="n">optimization_guide_model_and_features_store</span><span class="w">  </span><span class="s1">&#39;Top Sites&#39;</span>
+<span class="n">coupon_db</span><span class="w">                       </span><span class="n">History</span><span class="w">                                    </span><span class="n">Preferences</span><span class="w">                                  </span><span class="s1">&#39;Top Sites-journal&#39;</span>
+<span class="n">databases</span><span class="w">                       </span><span class="n">History</span><span class="o">-</span><span class="n">journal</span><span class="w">                            </span><span class="n">PreferredApps</span><span class="w">                                </span><span class="s1">&#39;Trusted Vault&#39;</span>
+<span class="n">data_reduction_proxy_leveldb</span><span class="w">    </span><span class="n">IndexedDB</span><span class="w">                                  </span><span class="n">QuotaManager</span><span class="w">                                  </span><span class="n">VideoDecodeStats</span>
+<span class="s1">&#39;Download Service&#39;</span><span class="w">              </span><span class="s1">&#39;Local Extension Settings&#39;</span><span class="w">                  </span><span class="n">QuotaManager</span><span class="o">-</span><span class="n">journal</span><span class="w">                         </span><span class="s1">&#39;Visited Links&#39;</span>
+<span class="s1">&#39;Extension Rules&#39;</span><span class="w">               </span><span class="s1">&#39;Local Storage&#39;</span><span class="w">                            </span><span class="s1">&#39;Safe Browsing Network&#39;</span><span class="w">                       </span><span class="s1">&#39;Web Data&#39;</span>
+<span class="n">Extensions</span><span class="w">                      </span><span class="n">LOCK</span><span class="w">                                      </span><span class="s1">&#39;Search Logos&#39;</span><span class="w">                                </span><span class="s1">&#39;Web Data-journal&#39;</span>
+<span class="s1">&#39;Extension Scripts&#39;</span><span class="w">              </span><span class="n">LOG</span><span class="w">                                       </span><span class="s1">&#39;Secure Preferences&#39;</span>
+<span class="s1">&#39;Extension State&#39;</span><span class="w">               </span><span class="s1">&#39;Login Data&#39;</span><span class="w">                                </span><span class="n">Sessions</span>
+<span class="n">Favicons</span><span class="w">                       </span><span class="s1">&#39;Login Data For Account&#39;</span><span class="w">                   </span><span class="s1">&#39;Session Storage&#39;</span>
+</code></pre></div>
+
+</li>
+</ol>
+<h1>Installing ForensiX</h1>
+<ol>
+<li>Clone ForensiX: <code>git clone https://github.com/ChmaraX/forensix.git</code>.</li>
+<li>Place Chrome's <code>Default</code> into ForensiX's volume: <code>cp -r data/AppData/Local/Google/Chrome/User\ Data/Default/* forensix/data</code>.</li>
+<li>Install ForensiX via <code>cd forensix &amp;&amp; ./install.sh</code>. The process may take several minutes as hundreds of megabytes are downloaded.</li>
+<li>Start ForensiX: <code>./startup.sh</code>.</li>
+<li>
+<p>Check the created containers:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>ls
+CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">                     </span>COMMAND<span class="w">                  </span>CREATED<span class="w">          </span>STATUS<span class="w">          </span>PORTS<span class="w">                                           </span>NAMES
+8c55799727b7<span class="w">   </span>chmarax/forensix:client<span class="w">   </span><span class="s2">&quot;docker-entrypoint.s…&quot;</span><span class="w">   </span><span class="m">31</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">29</span><span class="w"> </span>seconds<span class="w">   </span><span class="m">0</span>.0.0.0:3000-&gt;3000/tcp,<span class="w"> </span>:::3000-&gt;3000/tcp<span class="w">       </span>forensix-client
+e972dda0247e<span class="w">   </span>chmarax/forensix:server<span class="w">   </span><span class="s2">&quot;npm start&quot;</span><span class="w">              </span><span class="m">31</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">30</span><span class="w"> </span>seconds<span class="w">   </span><span class="m">0</span>.0.0.0:3001-&gt;3001/tcp,<span class="w"> </span>:::3001-&gt;3001/tcp<span class="w">       </span>forensix-server
+20ae98404ddc<span class="w">   </span>mongo:latest<span class="w">              </span><span class="s2">&quot;docker-entrypoint.s…&quot;</span><span class="w">   </span><span class="m">32</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span>Up<span class="w"> </span><span class="m">30</span><span class="w"> </span>seconds<span class="w">   </span><span class="m">0</span>.0.0.0:27017-&gt;27017/tcp,<span class="w"> </span>:::27017-&gt;27017/tcp<span class="w">   </span>forensix-mongodb
+</code></pre></div>
+
+</li>
+<li>
+<p>Access the web UI at <code>http://localhost:3000</code>.</p>
+</li>
+<li>Create an account.</li>
+<li>Log in with the created account.</li>
+</ol>
+<h1>Extracting Information with ForensiX</h1>
+<ol>
+<li>By operating ForensiX, the following information can be extracted:</li>
+<li>Country: Singapore</li>
+<li>Chrome version: <code>96.0.4664.110</code></li>
+<li>Screen resolution: <code>718x1014</code></li>
+<li>Most used username: <code>Alex24</code></li>
+<li>Browser activity period: only 24 December 2021</li>
+<li>Visited websites: Google, Bing</li>
+<li>Favicons: Google, Bing, other Singaporean websites</li>
+<li>Stored credentials, in which the password is encrypted and hex-encoded: <code>Alex24:763130EE90D405CD2F46F8F8026EC964434AEF7FFC39DE825C1700FAA0B50752EF2EFBF5E23C4F688A4F47DB</code> from a CTF-specific website, <code>http://challs.sieberrsec.tech:23547/dcfa237943d4fd7e2a514ca54642efaccd2cdbd5003bfb19a1e70737273e1190/</code></li>
+<li>Cached content: stylesheets, scripts, fonts, GIFs.</li>
+</ol>
+<p><img alt="Shallow information" src="/images/forensix-walktrough/main.png"></p>
+<p><img alt="History" src="/images/forensix-walktrough/history.png"></p>
+<p><img alt="Cached content" src="/images/forensix-walktrough/cache.png"></p>
+<p><img alt="Favicons" src="/images/forensix-walktrough/favicons.png"></p>
+<h1>Uninstalling ForensiX</h1>
+<ol>
+<li>Uninstall ForensiX: <code>./teardown.sh</code>.</li>
+</ol>
+<hr>
+<h1>References</h1>
+<ul>
+<li><a href="https://github.com/ChmaraX/forensix">ForensiX repository</a></li>
+<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md">Chromium Documentation on User Data Directories</a></li>
+</ul>     </main>
+  </body>
+</html>

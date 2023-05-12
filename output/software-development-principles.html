@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Software Development Principles </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="development" />
+<meta name="tags" content="principles" />
+<meta name="tags" content="python" />
+<meta name="tags" content="book-summary" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/software-development-principles.html"
+    rel="bookmark"
+    title="Permalink to Software Development Principles"
+    >Software Development Principles</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2022-09-11T00:00:00+03:00">
+    Sun 11 September 2022
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/development.html"
+      ><small class="chip">development</small></a
+    >
+    <a href="/tag/principles.html"
+      ><small class="chip">principles</small></a
+    >
+    <a href="/tag/python.html"
+      ><small class="chip">python</small></a
+    >
+    <a href="/tag/book-summary.html"
+      ><small class="chip">book-summary</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<h1>General Principles</h1>
+<ul>
+<li><strong>Keep it short and simple</strong> (abbreviated KISS)</li>
+<li><strong>Boy scout rule</strong>: Leave the code cleaner than you found. This helps for incremental codebase cleanup.</li>
+<li><strong>Don't repeat yourself</strong> (abbreviated DRY): Every piece of knowledge (information or behavior) must have a single representation in the system.</li>
+<li><strong>There's more than one way to do it</strong> (abbreviated TMTOWTDI and pronounced "Tim Toady"): Design the system to be flexible: a user may find multiple ways to achieve his goad. Used in Perl, avoided in Python.</li>
+<li><strong>You aren't gonna need it</strong> (abbreviated YAGNI): Implement functionality only when you need it.</li>
+<li><strong>Open-close</strong>: An entity (function, class, module) should be open to extensions, but close for modifications.</li>
+</ul>
+<h1>Contextual</h1>
+<h2>Naming</h2>
+<ul>
+<li>Use intention-revealing names.</li>
+<li><code>elapsed_time_in_days</code>, not <code>d</code> (context-dependent)</li>
+<li><code>game_board</code>, not <code>the_list</code> (context-dependent)</li>
+<li>Avoid disinformation.</li>
+<li><code>accounts</code>, not <code>accounts_list</code> (linked to the implementation, namely an iterable of type <code>list</code>)</li>
+<li>Make meaningful distinction between variables with close names.</li>
+<li><code>money</code> and <code>money_amount</code> are the same when used in the same context.</li>
+<li>There is no difference between <code>Product</code>, <code>ProductData</code> and <code>ProductInfo</code> due to the noise words used as suffixes.</li>
+<li>Use pronounceable names.</li>
+<li><code>generation_timestamp</code>, not <code>gen_time_ymdhms</code></li>
+<li>Use searchable names.</li>
+<li>Too generic search when using <code>7</code>. A constant named <code>DAYS_IN_WEEK</code> is better.</li>
+<li>Avoid encodings, mental mapping, prefixes, and type information.</li>
+<li><code>multiplication_factor</code>, not simply <code>f</code></li>
+<li><code>__users</code>, not <code>__private_users</code></li>
+<li><code>accounts</code>, not <code>accounts_dictionary</code></li>
+<li>Avoid abstract words such as:</li>
+<li><code>processor</code></li>
+<li><code>data</code></li>
+<li><code>info</code></li>
+<li><code>controller</code></li>
+<li><code>manager</code></li>
+<li>Functions should have verbs in their names.</li>
+<li><code>pay_employee()</code>, not <code>new_payment()</code></li>
+<li>Don't be cute or use puns.</li>
+<li>Plain <code>kill()</code>, not <code>whack()</code></li>
+<li>Make the names context-specific</li>
+<li>A <code>zipcode</code> in a context where <code>source_address</code> and <code>destination_address</code> can refer to any of them. Transform it into <code>source_zipcode</code> or <code>destination_zipcode</code>.</li>
+</ul>
+<h2>Comments</h2>
+<ul>
+<li>Use code to document the code.</li>
+<li><code>employee.is_eligible_for_full_benefits()</code>, not <code>if (employee.has_flag(HOURLY) &amp;&amp; employee.age &gt; 65) // check if the employee is eligible for full benefits</code></li>
+<li>Use good comments:</li>
+<li>Legal, for example copyrights</li>
+<li>Description of a decision</li>
+<li><code>TODO</code> comments</li>
+<li>Avoid bad comments:</li>
+<li>Dependent information, such as constants values and parameters names that could be changed in future implementations</li>
+<li>Commented-out code<ul>
+<li>Just remove it, you have <code>git</code> to restore it if you need to.</li>
+</ul>
+</li>
+<li>Journal comments (use <code>git blame</code> instead)</li>
+<li>Position markers, such as <code>// Public methods</code></li>
+<li>Obvious comments, such as <code>// Defaults constructor</code></li>
+</ul>
+<h2>Lines of Code</h2>
+<ul>
+<li>Declare variables close to their first usage.</li>
+<li>Avoid multiple <code>switch</code> statements. The only ones should occur when creating a class in a factory. Multiples switches are a sign of bad design. Inheritance can be used.</li>
+<li>Keep lines short (120 characters per line recommended).</li>
+<li>Use implicit line joining for splitting long lines of text.</li>
+</ul>
+<h2>Functions</h2>
+<h3>Functionality</h3>
+<ul>
+<li>Do one thing.</li>
+<li><code>save_page_to_file</code> calls multiple functions to: download page and write the content to a file. It does not execute this whole functionality on its own.</li>
+<li>Only one level of abstraction per function</li>
+<li>A function <code>get_links_from_html_page</code> downloads the page and calls another function to search the effective text with a RegEx (which is at another abstraction level).</li>
+<li>Do only what's expected.</li>
+<li>A <code>check_password</code> function will not initialize a session.</li>
+</ul>
+<h3>Structure</h3>
+<ul>
+<li>Small functions, with 20 LoCs (recommended)</li>
+<li>Only one indentation level</li>
+<li>Use structured programming: one entry, one exit.</li>
+<li>Remove functions that are not called.</li>
+</ul>
+<h3>Arguments</h3>
+<ul>
+<li>Prefer fewer arguments. When over 3 arguments, maybe you can pass a class instead.</li>
+<li>Avoid output arguments.</li>
+<li>No flag arguments. Split the function into multiple functions, one per each flag possible value.</li>
+<li>Don't pass <code>None</code> to any argument.</li>
+<li>Annotate their type.</li>
+</ul>
+<h3>Return Value</h3>
+<ul>
+<li>Do not return <code>None</code>.</li>
+<li>Do not return error codes. Raise exception instead.</li>
+<li>Annotate its type.</li>
+</ul>
+<h3>Documentation</h3>
+<ul>
+<li>Document only the functionalities that are on the edge of the system you design. The others impose friction during implementation.</li>
+</ul>
+<h2>Objects and Data Structures</h2>
+<h3>Design</h3>
+<ul>
+<li>Use classes for allowing access to members only through methods. This allows further processing and verifications.</li>
+<li>Use data structures to group data. The processing is done through another functions.</li>
+<li>Avoid hybrids (half class, half data structure), namely classes with exposed members.</li>
+<li><strong>Single Responsibility Principle</strong> (abbreviated SRP) or <strong>High Cohesion</strong>: A class should have one and only one reason to change.</li>
+<li><strong>Low coupling</strong>: A class should have the least possible dependencies.</li>
+<li><strong>Dependency injection</strong>: Delegate secondary responsibilities to another objects that are dedicated for that purpose.</li>
+<li>Do not manage the profile picture in a <code>User</code> class, just create a new <code>ProfilePicture</code> one that manages itself.</li>
+<li><strong>Composition over Inheritance</strong> (abbreviated CoI): Prefer embedding of different objects within another object (according to the dependency injection principle) instead of inheritance. The latter will expose all the public methods of the parent class and is limited by some programming languages (for example, multiple inheritance could not be achieved).</li>
+<li><strong>Interface Segregation Principle</strong> (abbreviated ISP): A client should not have access to methods it doesn't use. If a broader interface is used, another interface (called role interface) can be created to limit the exposed methods.</li>
+<li><strong>Liskov Substitution Principle</strong> (abbreviated LSP): If a class is substituted with any of its subclasses, the program should work well. This implies that the return types and exceptions types remains the same. In addition, no side effect is introduced.</li>
+</ul>
+<h3>Structure</h3>
+<ul>
+<li>Declare instance variables at the top of the class.</li>
+<li>After the instance variable, place each public function, eventually followed by the private methods it calls.</li>
+</ul>
+<h3>Methods</h3>
+<ul>
+<li><strong>Law of Demeter</strong>: A method should not know about the implementation of an object it manipulates.</li>
+<li><code>user.profile_picture.badge</code>, not <code>user.get_profile_picture().get_badge()</code>.</li>
+<li>If a method does not use the parent object, transform it into a <code>@staticmethod</code>.</li>
+</ul>
+<h3>Members</h3>
+<ul>
+<li>Annotate types in class beginning.</li>
+<li>Initialize the members in constructor.</li>
+<li>Place a <code>_</code> in front of the name if the member is protected (that can be used in a subclass) and <code>__</code> if it is private (used only in the current class).</li>
+</ul>
+<h2>Included Modules</h2>
+<ul>
+<li>Use only absolute imports.</li>
+<li>Import only the functionalities that are exposed explicitly by the module (for example, the ones in <code>__init__.py</code>). Do not navigate the inwards of the module.</li>
+</ul>
+<h2>Source Code Files (or Modules)</h2>
+<ul>
+<li>Avoid huge files (over some hundreds LoCs).</li>
+<li>Place the called functions after the callee. The code can be read as a newspaper.</li>
+<li>Add a docstring describing the source code functionality.</li>
+<li>Maintain a predictable structure:</li>
+<li>Imports</li>
+<li>Constants</li>
+<li>Type annotations aliases</li>
+<li>Enumerations</li>
+<li>Classes</li>
+<li>Module-level functions</li>
+</ul>
+<h2>Third-Party Components</h2>
+<ul>
+<li>Hide third party code with wrapper classes.</li>
+<li>Translate learning code in unit tests. If something changes in the future versions, the tests will fail.</li>
+<li>Implement interfaces and dummy classes for upcoming functionalities.</li>
+</ul>
+<h2>Whole System</h2>
+<ul>
+<li>Separate the startup process of the application.</li>
+</ul>
+<h1>Additional Aspects</h1>
+<h2>Formatting</h2>
+<ul>
+<li>Establish formatting rules with your team. Implement them using linters and formatters.</li>
+<li>Avoid formatting your code manually.</li>
+</ul>
+<h2>Error Handling</h2>
+<ul>
+<li>Use exceptions, not return codes.</li>
+<li>Define a root exception and inherit from it for each child exception.</li>
+<li>Provide context to an exception with the help of docstrings and name uniqueness.</li>
+<li>Push error handling to the edge of each component of the system.</li>
+</ul>
+<h2>Unit Testing</h2>
+<ul>
+<li>Create a test for each state of a function/object.</li>
+<li>Test an exception in a function separately, not in the test targeting the normal functioning</li>
+<li>Keep only one <code>assert</code> per test.</li>
+<li><strong>FIRST</strong>: The tests should be:</li>
+<li>Fast</li>
+<li>Independent</li>
+<li>Repeatable</li>
+<li>Self-validating by returning a boolean indicating if it passed or not</li>
+<li>Written before the code that make them pass (in a TDD fashion).</li>
+<li>Name each test <code>test_&lt;method_or_class&gt;_&lt;state&gt;</code>.</li>
+<li>Keep the production-grade standards for test code.</li>
+<li>The tests can be place into a different <code>tests</code> folder or in the same implementation file.</li>
+<li>Run all the tests.</li>
+<li>Use coverage to determine code that is not tested.</li>
+</ul>
+<h2>Journaling</h2>
+<ul>
+<li>Avoid <code>print</code>. Use logging functionalities instead.</li>
+</ul>
+<h2>Configuration</h2>
+<ul>
+<li><strong>Convention over configuration</strong> (abbreviated CoC): Develop software by establishing "sensible defaults" wrapped into conventions. This will ease the usage compared to the more flexible approach of configuration.</li>
+<li>Expose the user-configurable aspects via a separate configuration class that parse a configuration file to get its members values.</li>
+<li>Expose the aspects configurable by programmers via constants in the current file or in a separate module, only with configuration constants.</li>
+</ul>
+<hr>
+<h1>References</h1>
+<ul>
+<li><a href="https://www.goodreads.com/book/show/3735293-clean-code">Clean Code: A Handbook of Agile Software Craftsmanship</a></li>
+</ul>     </main>
+  </body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Fundamentals of Software Architecture </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="architecture" />
+<meta name="tags" content="software-development" />
+<meta name="tags" content="book-summary" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/fundamentals-of-software-architecture.html"
+    rel="bookmark"
+    title="Permalink to Fundamentals of Software Architecture"
+    >Fundamentals of Software Architecture</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2022-10-15T00:00:00+03:00">
+    Sat 15 October 2022
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/architecture.html"
+      ><small class="chip">architecture</small></a
+    >
+    <a href="/tag/software-development.html"
+      ><small class="chip">software-development</small></a
+    >
+    <a href="/tag/book-summary.html"
+      ><small class="chip">book-summary</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<h1>Software Architecture</h1>
+<ul>
+<li>It is the blueprint of a system, consisting on:<ul>
+<li>Structure: The way in which components are arranged. For example, microservices or monolith.</li>
+<li>Characteristics: Operational goals supported by the architecture. For example, availability, testability, and performance.</li>
+<li>Decisions: Rules based on which the system is designed. For example, what particular layers can access the data layer directly.</li>
+<li>Design principles: Guideline (not hard limits, but a decision). For example, the preference of asynchronous messages between services.</li>
+</ul>
+</li>
+</ul>
+<h1>Software Architects</h1>
+<h2>Responsibilities</h2>
+<ul>
+<li>Make architecture decisions.<ul>
+<li>Manage trade-offs.</li>
+</ul>
+</li>
+<li>Continually analyze the architecture.</li>
+<li>Keep current with latest trends.<ul>
+<li>Code. This will avoid the Romanian "Fă ce zice popa, nu ce face el".</li>
+</ul>
+</li>
+<li>Ensure compliance with decisions.</li>
+<li>Diverse exposure and experience.</li>
+<li>Have business domain knowledge.</li>
+<li>Possess interpersonal skills.</li>
+<li>Understand and navigate politic.</li>
+</ul>
+<h2>Comparison with a Developer</h2>
+<ul>
+<li>The architect operate on a greater level of abstraction (structure, characteristics, decision, design principles). A developer deals with more concrete artifacts, such as class design, user interfaces and source code.</li>
+</ul>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_0203.png"></p>
+<ul>
+<li>The architect has a higher technical breadth than a developer. The latter has depth.<ul>
+<li>In the pyramid below, the depth is the measure of how well you operate the technologies/frameworks/tools you know that you know (the height of the first section). The breadth is the number of ones you know you don't know (the width of the second section).</li>
+<li>The goal is to invert the shape: to increase the staff you know and decrease the ones that you don't have idea about.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_0206.png"></p>
+<h2>Katas</h2>
+<ul>
+<li>Architectural katas are exercises practiced by architects to build an architecture from a set of business concerns.</li>
+<li>They are explained by specifying:<ul>
+<li>A problem description</li>
+<li>Users</li>
+<li>Requirements</li>
+<li>Additional context.</li>
+</ul>
+</li>
+</ul>
+<h1>Architecture Characteristics</h1>
+<ul>
+<li>Are also known as non-functional requirements.</li>
+<li>These are not established by the architect himself, but deduced from domain concerns. For example, if a business expects a burst of connections when the Black Friday campaign starts, then the architecture needs to be elastic (the elasticity characteristic).</li>
+<li>They are applied for each architectural quantum.</li>
+</ul>
+<h2>Criteria</h2>
+<ul>
+<li>Specifies a non-domain design consideration.</li>
+<li>Influences some structural aspect of the design.</li>
+<li>Is critical or important to application success.</li>
+</ul>
+<h2>Explicit and Implicit Characteristics</h2>
+<ul>
+<li>Explicit, that appear explicitly in the problem specification</li>
+<li>Implicit, which are deducted by the architect. For example, if a website process card information, the security is implicit. It needs to be embedded in the architecture, despite the lack of explicit specification.</li>
+</ul>
+<h2>Common Characteristics</h2>
+<ul>
+<li>Operational<ul>
+<li>Availability</li>
+<li>Continuity</li>
+<li>Performance</li>
+<li>Recoverability</li>
+<li>Reliability</li>
+<li>Robustness</li>
+<li>Scalability</li>
+<li>Elasticity</li>
+</ul>
+</li>
+<li>Structural<ul>
+<li>Modularity</li>
+<li>Configurability</li>
+<li>Extensibility</li>
+<li>Installability</li>
+<li>Reuse</li>
+<li>Localization</li>
+<li>Maintainability</li>
+<li>Portability</li>
+<li>Supportability</li>
+<li>Upgradability</li>
+</ul>
+</li>
+<li>Cross-cutting<ul>
+<li>Accessibility</li>
+<li>Archivability</li>
+<li>Authentication</li>
+<li>Authorization</li>
+<li>Legal</li>
+<li>Privacy</li>
+<li>Security</li>
+<li>Supportability</li>
+<li>Usability</li>
+</ul>
+</li>
+</ul>
+<h2>Architectural Quantum</h2>
+<ul>
+<li>A quantum is an independently deployable artifact with high functional cohesion and synchronous connascence.<ul>
+<li>"An architecture quantum includes all the necessary components to function independently of other parts of the architecture."</li>
+<li>"High functional cohesion implies that an architecture quantum does something purposeful."</li>
+<li>"Synchronous connascence implies synchronous calls within an application context or between distributed services that form this architecture quantum."</li>
+</ul>
+</li>
+<li>A kata in the book presents an auction company. Multiple quanta were identified, each with different characteristics:<ul>
+<li>Bidder feedback</li>
+<li>Auctioneer</li>
+<li>Bidder.</li>
+</ul>
+</li>
+</ul>
+<h2>Governance via Fitness Functions</h2>
+<ul>
+<li>The characteristics are imposed via fitness functions, namely any mechanism that provides an objective integrity assessment of the characteristic.</li>
+<li>Fitness functions are only a new way to perceive the existent tools used by developers:<ul>
+<li>Metrics</li>
+<li>Monitors</li>
+<li>Unit testing</li>
+<li>Chaos engineering.</li>
+</ul>
+</li>
+<li>The developers needs to understand why the fitness function is introduced.</li>
+</ul>
+<h3>Cyclomatic Complexity</h3>
+<ul>
+<li>An example for ensuring modularity is a metric named Cyclomatic Complexity.</li>
+<li>It provides an object measure for the complexity of code, at the function/method, class, or application level.</li>
+<li>The value of 5 is ideal, but anything under 10 is ok.</li>
+</ul>
+<h3>Cohesion</h3>
+<ul>
+<li>Defines to which extent the parts of a module should be contained within the same module.</li>
+</ul>
+<h4>Types</h4>
+<ul>
+<li>Functional: One module contains everything it needs to function.</li>
+<li>Sequential: One module's output is another's input.</li>
+<li>Communicational: Modules exchanges information.</li>
+<li>Procedural: The code from two modules must execute in a particular order.</li>
+<li>Temporal: Modules are related based on timing dependencies.</li>
+<li>Logical: The code inside a module is related, but not functionally coupled. For example, a utility module.</li>
+<li>Coincidental: Luck made the code be in the same module. It's the worst.</li>
+</ul>
+<h4>Metrics</h4>
+<ul>
+<li>Instability<ul>
+<li>Is defined as the ratio of efferent coupling to the sum of both efferent and afferent coupling.</li>
+<li>Afferent coupling measures the number of incoming connections to a code artifact (component, class, function, and so on).</li>
+<li>Efferent coupling measures the outgoing connections to other code artifacts.</li>
+</ul>
+</li>
+<li>Abstractness<ul>
+<li>Is the ratio of abstract artifacts (abstract classes, interfaces, and so on) to concrete artifacts (implementation).</li>
+</ul>
+</li>
+<li>Distance from the main sequence</li>
+</ul>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_0303.png"></p>
+<ul>
+<li>Chidamber and Kemerer Lack of Cohesion in Methods (abbreviated LCOM)</li>
+</ul>
+<h3>Connascence</h3>
+<ul>
+<li>Two components are connascent if a change in one would require the other to be modified in order to maintain the overall correctness of the system.</li>
+</ul>
+<h4>Types</h4>
+<ul>
+<li>Static, namely source-code coupling<ul>
+<li>Name: For example, name of methods.</li>
+<li>Type: For example, type of variable.</li>
+<li>Meaning: For example, meaning of <code>true</code> in a programming language.</li>
+<li>Position: For example, order of given parameters.</li>
+<li>Algorithm: For example, a hashing algorithm used by two modules.</li>
+</ul>
+</li>
+<li>Dynamic, at runtime<ul>
+<li>Execution: When order of executing some code blocks matters.</li>
+<li>Timing: For example, two threads manipulating a shared resource.</li>
+<li>Values: For example, transactions in distributed instances of relational databases.</li>
+<li>Identity: When two components must change together.</li>
+</ul>
+</li>
+<li>Quantum<ul>
+<li>Synchronous</li>
+<li>Asynchronous</li>
+</ul>
+</li>
+</ul>
+<h4>Metrics</h4>
+<ul>
+<li>Strength: Ease with which a developer can refactor that type of coupling.</li>
+<li>Degree: Size of the impact.</li>
+</ul>
+<h1>Architecture</h1>
+<h2>Modules</h2>
+<ul>
+<li>Modules are logical groups of related code.</li>
+<li>Examples<ul>
+<li>Classes in an object-oriented language</li>
+<li>Functions in a structured or functional language</li>
+</ul>
+</li>
+</ul>
+<h2>Components</h2>
+<ul>
+<li>The architecture is composed of components, which are the physical manifestation of a software module.</li>
+<li>There are two ways to partition components:<ul>
+<li>Technical, in which components are grouped depending on their technical functions</li>
+<li>Domain, in which groups are formed by considering the business domains and workflows.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_0805.png"></p>
+<h2>Techniques</h2>
+<h3>Entity (Trap)</h3>
+<ul>
+<li>The data model dictates the overall architecture.</li>
+<li>Derives from Fred Brooks' Approach: "Get the data structures correct, and the code will write itself".</li>
+<li>Process<ol>
+<li>Identify the data structures.</li>
+<li>Map the data structures to components.</li>
+</ol>
+</li>
+<li>It is ok for simplistic applications, when a simple CRUD database suffice. The pattern that could be applied is naked objects.</li>
+</ul>
+<h3>Actor/Action</h3>
+<ul>
+<li>Process<ol>
+<li>Identify the actors.</li>
+<li>Identify the actions performed by each actor.</li>
+</ol>
+</li>
+</ul>
+<h3>Event Storming</h3>
+<ul>
+<li>Came from domain-driven design and is widely used when designing microservices.</li>
+<li>Process<ol>
+<li>Suppose messages/events are exchanged between the established (future) components.</li>
+<li>Identify all events that may occur.</li>
+<li>Group the events in components.</li>
+</ol>
+</li>
+</ul>
+<h3>Workflow</h3>
+<ul>
+<li>Process<ol>
+<li>Identify the key roles.</li>
+<li>Identify the workflows in which each role is involved.</li>
+<li>Group the workflows in components.</li>
+</ol>
+</li>
+</ul>
+<h3>Recommended Process</h3>
+<ol>
+<li>Identify initial components.</li>
+<li>Divide the functional requirements (or user stories) and assign them to each component.</li>
+<li>For each component:<ol>
+<li>Establish characteristics from business concerns.</li>
+<li>Restructure the components.</li>
+</ol>
+</li>
+<li>When the restructuring is no longer required:<ol>
+<li>Prioritize the most important characteristics.</li>
+<li>Measure the top characteristics by setting fitness functions.</li>
+</ol>
+</li>
+</ol>
+<h2>Architecture Styles</h2>
+<ul>
+<li>Types<ul>
+<li>Monolithic, in which all code is encapsulated into a single deployment unit</li>
+<li>Distributed, in which multiple deployment units exits</li>
+</ul>
+</li>
+</ul>
+<h3>Big Ball of Mud</h3>
+<ul>
+<li>"A Big Ball of Mud is a haphazardly structured, sprawling, sloppy, duct-tape-and-baling-wire, spaghetti-code jungle [..] The overall structure of the system may never have been well-defined." - Brian Foote</li>
+</ul>
+<h3>Layered</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1003.png"></p>
+<ul>
+<li>Monolithic structure</li>
+<li>One quanta</li>
+<li>Technical partitioning</li>
+<li>Composed of multiple logical layers, each with a different role or responsibility (handling the UI, executing business operations, storing data, etc.)</li>
+<li>A variant of this architecture is the closed-layered architecture, in which a request from the topmost layer must be handled by each layer, without the ability to skip any of it (as in the fast-lane reader pattern).</li>
+<li>You must avoid the architecture sinkhole anti-pattern, in which requests are only passed from layer to layer, without any processing. There are scenarios in which this must happen, but they don't need to exceed 20% from all scenarios.</li>
+</ul>
+<h3>Pipeline</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1101.png"></p>
+<ul>
+<li>Monolithic structure</li>
+<li>One quanta</li>
+<li>Technical partitioning</li>
+<li>Components<ul>
+<li>Filters, processing (generally, in a stateless manner) the input to produce an output</li>
+<li>Pipes, linking the filters<ul>
+<li>Producer</li>
+<li>Transformer</li>
+<li>Tester</li>
+<li>Consumer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Appears as an underlying principle in Unix shell languages</li>
+</ul>
+<h3>Microkernel</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1202.png"></p>
+<ul>
+<li>Monolithic structure</li>
+<li>One quanta</li>
+<li>Domain or technical partitioning</li>
+<li>Also named plug-in architecture</li>
+<li>Components<ul>
+<li>Core system, with minimal functionalities to run the system</li>
+<li>Multiple plug-in components, with specialized functionalities meant to enhance or extend the core system</li>
+<li>Registry of available modules</li>
+<li>Contracts, to standardize the communication between plug-ins and the core system</li>
+</ul>
+</li>
+</ul>
+<h3>Service-Based</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1304.png"></p>
+<ul>
+<li>Distributed structure</li>
+<li>Domain partitioning</li>
+<li>1 to many quanta</li>
+<li>Components<ul>
+<li>Separately deployed user interface(s)</li>
+<li>Separately deployed remote coarse-grained services (4 to 12, with 7 being the sweet spot)</li>
+<li>Monolithic database or multiple domain-specific databases</li>
+</ul>
+</li>
+</ul>
+<h3>Event-Driven</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1401.png"></p>
+<ul>
+<li>Distributed structure</li>
+<li>Technical partitioned</li>
+<li>1 to many quanta</li>
+<li>Components<ul>
+<li>Requests</li>
+<li>Request orchestrator (optional)</li>
+<li>Request processor</li>
+<li>Database</li>
+</ul>
+</li>
+<li>Variants<ul>
+<li>Mediator<ul>
+<li>Custom logic can be implemented in the mediator. For example, if an event is received, then a sequence of other events are generated and sent to each responsible processor.</li>
+<li>The communication flow between processors represents a tree.</li>
+</ul>
+</li>
+<li>Broker, in which there is no need of central management of events<ul>
+<li>Technologies such as RabbitMQ and ActiveMQ are used here.</li>
+<li>Distribution approaches are:<ul>
+<li>Fan-out: All processors receive the event.</li>
+<li>Directed</li>
+<li>Topic-based: Only processors which are subscribed to that topic will receive.</li>
+</ul>
+</li>
+<li>The communication flow between processors represents a graph.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>When synchronous messaging is required, then the request-reply pattern can be used.</li>
+</ul>
+<h3>Space-Based</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1502.png"></p>
+<ul>
+<li>Distributed structure</li>
+<li>Domain or technical partitioned</li>
+<li>1 to many quanta</li>
+<li>The names came from the concept of tuple space, where multiple parallel processors communicate through shared memory.</li>
+<li>Components<ul>
+<li>Processing unit<ul>
+<li>Code</li>
+<li>In-memory data grid</li>
+<li>Data replication engines</li>
+</ul>
+</li>
+<li>Virtualized middleware<ul>
+<li>Messaging grid, for sending requests from clients to processing units</li>
+<li>Data grid, for ensuring the data replication between replicas from processing units' engines</li>
+<li>Processing grid, which is like a mediator in the service-based architecture, helping to orchestrate multiple processing units to achieve a common goal</li>
+<li>Deployment manager, for elasticity and startup/shutdown</li>
+</ul>
+</li>
+<li>Data pumps to send updates to database</li>
+<li>Data writers to write the updates from data pumps into database</li>
+<li>Data readers to read from database and send data to processing units (at startup)</li>
+</ul>
+</li>
+<li>Hazelcast, Apache Ignite and Oracle Coherance are used for both in-memory data grids and data replication engines.</li>
+<li>A hybrid approach can be used, in which the database is on-premise and the processing units and virtualized middleware in the cloud.</li>
+</ul>
+<h3>Orchestration-Driven Service-Oriented</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1601.png"></p>
+<ul>
+<li>Distributed structure</li>
+<li>Technical partitioned</li>
+<li>One quantum</li>
+<li>The architecture style is centered on reusing code from the organization's codebase.</li>
+<li>Components<ul>
+<li>Business services, which are domain-related entry points in the architecture</li>
+<li>Enterprise service bus<ul>
+<li>Orchestration engine, defining the relationship between business and enterprise services</li>
+</ul>
+</li>
+<li>Enterprise services, which implements shared, atomic logic, that can be shared between multiple businesses</li>
+<li>Application services, which are application-specific, non-shared services</li>
+<li>Infrastructure services, such as logging, monitoring, authentication, and authorization</li>
+</ul>
+</li>
+</ul>
+<h3>Microservices</h3>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_1701.png"></p>
+<ul>
+<li>Distributed structure</li>
+<li>Domain partitioning</li>
+<li>1 to many quanta</li>
+<li>Microservices means modules smaller than a service (like in the service-based architecture), not something like a serverless function (dealing only with a minimal workflow).<ul>
+<li>"The term microservice is a label, not a description." - Martin Fowler, the creator of the term "microservice"</li>
+</ul>
+</li>
+<li>Components<ul>
+<li>API layer</li>
+<li>Highly decoupled microservices, each modeling a domain or workflow</li>
+<li>Monolithic interfaces or multiple ones</li>
+</ul>
+</li>
+<li>Scenarios in which shared functionalities are required (for example, unified monitoring and logging) can be achieved with the sidecar pattern. These sidecars report to a service plane and forms a service mesh, distributed on each node of the architecture.</li>
+<li>When complex processes are implemented, then a mechanism from below is required:<ul>
+<li>Orchestration: A separate service deals with triggering other services, sequencing results and sending a result to the client.</li>
+<li>Choreography: Just like in broker event-driven architecture, the services communicates with each other to achieve a common goal.</li>
+</ul>
+</li>
+</ul>
+<h1>Soft Skills</h1>
+<h2>Making Decisions</h2>
+<h3>Anti-patterns</h3>
+<ul>
+<li>Covering your assets: The architect postpones or avoid making a decision because of his hear of making a wrong choice.</li>
+<li>Groundhog day: People don't know why a decision was made. The decision gets discussed over and over.</li>
+<li>Email-driven architecture: People forget about a decision that was made regarding the architecture.</li>
+</ul>
+<h3>Architecture Decision Records</h3>
+<ul>
+<li>An architecture decision record (ADR) is a simple record for documenting a decision regarding the architecture.</li>
+<li>An ADR is composed of:<ul>
+<li>Title</li>
+<li>Status: Proposed, accepted, accepted and supersedes X, superseded by Y, request for comments until Z</li>
+<li>Context: What made me do this decision?</li>
+<li>Decision</li>
+<li>Consequences: What's the impact of the decision?</li>
+<li>Compliance: How to ensure compliance with the decisions?</li>
+<li>Notes: Author, CHANGELOG, other meta-data</li>
+</ul>
+</li>
+<li>These can be managed by a third party software or simply with a shared folder of Markdown files.</li>
+</ul>
+<h2>Assessing Risks</h2>
+<ul>
+<li>For assessing the risk of a certain component, use a 1-9 scale as follows:
+<img alt="" src="/images/fundamentals-of-software-architecture/fosa_2001.png"></li>
+</ul>
+<h3>Risk Storming</h3>
+<ol>
+<li>Gather a bunch of professionals (developers, architects, etc.) from the core team.</li>
+<li>Identify the areas of risks for each pair component-characteristic.</li>
+<li>Establish consensus between participants.</li>
+<li>Mitigate the risks by applying enhancements to the most risky characteristics of components.  </li>
+</ol>
+<h2>Diagramming</h2>
+<ul>
+<li>Unified Modeling Language</li>
+<li>C4 model<ul>
+<li>Context</li>
+<li>Container</li>
+<li>Component</li>
+<li>Class</li>
+</ul>
+</li>
+<li>ArchiMate</li>
+</ul>
+<h2>Leading Teams</h2>
+<h3>Architect Personalities</h3>
+<ol>
+<li>Control freak: Tries to control each aspect of the development. Imposes too tight boundaries, which cause frustration.</li>
+<li>Armchair: Is not interested in the development process at all. It has loose boundaries, which can create confusion.</li>
+<li>Effective: Can establish appropriate boundaries.</li>
+</ol>
+<h3>Dosing the Control</h3>
+<p>For each aspect below, add or subtract 20 from a baseline 0.
+- Team familiarity
+- Team size
+- Overall experience
+- Project complexity
+- Project duration.</p>
+<p><img alt="" src="/images/fundamentals-of-software-architecture/fosa_2206.png"></p>
+<h3>Team Risks</h3>
+<ul>
+<li>Process loss (or Brook's law): The more people you add to a project, the more time it will take.</li>
+<li>Pluralistic ignorance:  Manifests when everyone agrees to a decision, but privately rejects it.</li>
+<li>Diffusion of responsibility: It is based on the fact that as team size increases, it has a negative impact on communication.</li>
+</ul>
+<h3>Using Checklists</h3>
+<p>Examples of checklists that can be offered to the development team are:
+- Code Completion Checklist: When the developer states that the task is done.
+- Unit and Functional Testing Checklist
+- Software Release Checklist.</p>
+<h3>Leadership</h3>
+<ul>
+<li>Be pragmatic, yet visionary.</li>
+</ul>
+<h2>Developing Thyself</h2>
+<ul>
+<li>The 20-minute rule: Devote 20-minutes each day (in the morning, before opening the email inbox) to learning something new.</li>
+<li>Use others or develop own tech radars.</li>
+<li>Follow interesting persons on social media.</li>
+</ul>
+<h1>Others</h1>
+<h2>Fallacies of Distributed Architectures</h2>
+<ul>
+<li>The network is reliable.</li>
+<li>Latency is zero.</li>
+<li>Bandwidth is infinite.</li>
+<li>The network is secure.</li>
+<li>The topology never changes.</li>
+<li>The is only one administrator.</li>
+<li>Transport cost is zero.</li>
+<li>The network is homogeneous (with equipment only from one vendor).</li>
+</ul>
+<h2>Replicated versus Distributed Cache</h2>
+<ul>
+<li>Replicated cache uses an in-memory replica on each computing device.</li>
+<li>The distributed one has a central caching server and the computing devices access it via a custom protocol.</li>
+</ul>
+<h2>Patterns</h2>
+<ul>
+<li>Sidecar</li>
+<li>Service locator: Describes the process of obtaining a service with a strong abstraction layer. As in Kubernetes.</li>
+<li>Naked objects</li>
+<li>Fast-lane reader: The component bypasses unnecessary layers.</li>
+</ul>
+<h2>Anti-patterns</h2>
+<ul>
+<li>Anti-pattern: Something that seems like a good idea when you begin, but leads you into trouble.</li>
+<li>Architecture sinkhole: Passing a request from layer to layer, without any processing</li>
+</ul>
+<h2>Mental Models</h2>
+<ul>
+<li>Frozen caveman: A person thinks that the information he possesses is still cutting edge, despite the evolution that happened in the meantime.</li>
+<li>Conway's law: Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.</li>
+</ul>
+<h1>Quotes</h1>
+<blockquote>
+<p>"Never shoot for the <em>best</em> architecture, but rather the <em>least worst</em> architecture."</p>
+<p>"There are not right or wrong answers in architecture—only trade-offs."</p>
+<p>"It depends."</p>
+<p>"Business stakeholders will appreciate visionary solutions that fit within a set of constraints, and developers will appreciate having a practical (rather then theoretical) solution to implement."</p>
+</blockquote>
+<hr>
+<h1>References</h1>
+<ul>
+<li><a href="https://www.goodreads.com/book/show/44144493-fundamentals-of-software-architecture">Fundamentals of Software Architecture: An Engineering Approach</a></li>
+</ul>     </main>
+  </body>
+</html>

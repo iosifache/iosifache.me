@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Binary Analysis </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+          <meta name="tags" content="ssh" />
+<meta name="tags" content="ngrok" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/tags">Tags</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/binary-analysis.html"
+    rel="bookmark"
+    title="Permalink to Binary Analysis"
+    >Binary Analysis</a
+  >
+</h1>
+<div class="post-info">
+  <b>Date</b>:
+  <time class="published" datetime="2023-04-15T12:00:00+03:00">
+    Sat 15 April 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/ssh.html"
+      ><small class="chip">ssh</small></a
+    >
+    <a href="/tag/ngrok.html"
+      ><small class="chip">ngrok</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<ol>
+<li>Ensure the requirements:<ul>
+<li>An architecture with 3 hosts: one for development, a jump host, and one for production;</li>
+<li>An account <code>&lt;USERNAME&gt;</code> created on the production host;</li>
+<li>An SSH server installed on the production host, on port 22;</li>
+<li>A public SSH key linked attached to the account;</li>
+<li>A private SSH key placed on the development host, on <code>&lt;PATH_TO_PRIVATE_KEY&gt;</code>; and</li>
+<li>A project folder on the development host, on <code>&lt;PATH_TO_SYNCED_FOLDER&gt;</code>.</li>
+</ul>
+</li>
+<li>Login to ngrok, eventually with SSO (e.g. GitHub).</li>
+<li>After login, you will be redirected to the setup page. Copy the link to the binary (not. <code>&lt;BINARY_LINK&gt;</code>) specific to the production host's architecture.</li>
+<li>Login to the production host, and download the binary with <code>wget &lt;BINARY_LINK&gt;</code>.</li>
+<li>Authenticate yourself to ngrok: <code>./ngrok config add-authtoken &lt;ACCOUNT_TOKEN&gt;</code>.</li>
+<li>Expose the SSH server using ngrok: <code>./ngrok tcp 22</code>.  This step will give you a URL respecting the structure <code>tcp://&lt;NGROK_SUBDOMAIN&gt;:&lt;PORT&gt;</code>.</li>
+<li>In the Visual Studio Code installed on the development host, install the SFTP extension.</li>
+<li>In the folder you want to sync, create the file <code>.vscode/sftp.json</code> with the content inserted on the end on the list.</li>
+<li>In the IDE, run the command "<em>SFTP: Sync Local -&gt; Remote</em>" to upload the initial state of the project folder.</li>
+<li>Furthermore, once you save a file in your project's folder, it will be automatically updated on the remote host too.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Development Host&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;NGROK_SUBDOMAIN&gt;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;protocol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sftp&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;PORT&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;USERNAME&gt;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;privateKeyPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;PATH_TO_PRIVATE_KEY&gt;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;remotePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;PATH_TO_SYNCED_FOLDER&gt;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;uploadOnSave&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;useTempFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;openSsh&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ignore&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;.vscode&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>     </main>
+  </body>
+</html>

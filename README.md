@@ -13,6 +13,7 @@ This repository holds a blog with bits of useful information.
 
 1. Enter the environment: `poetry shell`.
 2. Serve the website: `make serve`.
+3. Before publishing, regenerate HTML: `make html`.
 
 ## Resources 📚
 
