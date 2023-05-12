@@ -6,3 +6,4 @@ status: hidden
 ---
 
 - [Ubuntu Security Podcast episodes in which I was involved](./ubuntu-security-podcast)
+- [Binary Exploitation laboratories, in Romanian](https://binexplabs.iosifache.me)

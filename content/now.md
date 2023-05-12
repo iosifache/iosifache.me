@@ -11,5 +11,5 @@ status: hidden
 - Pursuing a cybersecurity master's degree at the [University Politehnica in Bucharest](https://upb.ro)
 
 <blockquote>
-💡 Inspired by Derek Sivers' <a href="https://sive.rs/nowff">/now</a>. Last updated on May 13th 2023.
+💡 Inspired by Derek Sivers' <a href="https://sive.rs/nowff">/now</a>
 </blockquote>
