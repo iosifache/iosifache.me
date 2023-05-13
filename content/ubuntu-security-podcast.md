@@ -9,4 +9,4 @@ slug: ubuntu-security-podcast
 status: hidden
 ---
 
-- ["Modeling Realistic Adversarial Attacks against Network Intrusion Detection Systems"](https://dl.acm.org/doi/10.1145/3469659) in [Episode 194](https://ubuntusecuritypodcast.org/episode-194/)
+- ["Modeling Realistic Adversarial Attacks against Network Intrusion Detection Systems" in Ubuntu Security Podcast 194](/usp-194)

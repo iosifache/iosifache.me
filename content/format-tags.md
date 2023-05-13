@@ -6,6 +6,7 @@ status: hidden
 ---
 
 - `book-summary`
+- `status-update`
 - `index`
 - `principles`
 - `study-case`
