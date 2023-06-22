@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Building Semgrep for Linux on arm64 </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="semgrep" />
+<meta name="tags" content="linux" />
+<meta name="tags" content="arm64" />
+<meta name="tags" content="walkthrough" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/semgrep-setup-linux-arm64.html"
+    rel="bookmark"
+    title="Permalink to Building Semgrep for Linux on arm64"
+    >Building Semgrep for Linux on arm64</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-06-09T00:00:00+03:00">
+    Fri 09 June 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/semgrep.html"
+      ><small class="chip">semgrep</small></a
+    >
+    <a href="/tag/linux.html"
+      ><small class="chip">linux</small></a
+    >
+    <a href="/tag/arm64.html"
+      ><small class="chip">arm64</small></a
+    >
+    <a href="/tag/walkthrough.html"
+      ><small class="chip">walkthrough</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<ol>
+<li>Download the repository: <code>git clone https://github.com/returntocorp/semgrep</code></li>
+<li>Set up the development environment: <code>make dev-setup</code></li>
+<li>
+<p>Install <code>opam</code></p>
+<p><code>apt-get install opam
+opam init
+eval $(opam config env)</code></p>
+</li>
+<li>
+<p>Build: <code>make</code></p>
+</li>
+<li>Install <code>pipenv</code>: <code>sudo apt install pipenv</code></li>
+<li>Downgrade <code>ruamel.yaml==0.16.0</code>: <code>pip install 'ruamel.yaml==0.16.0'</code></li>
+<li>
+<p>Install Semgrep's CLI</p>
+<p><code>cd cli
+python setup.py install</code></p>
+</li>
+</ol>     </main>
+  </body>
+</html>

@@ -10,3 +10,4 @@ status: hidden
 ---
 
 - ["Modeling Realistic Adversarial Attacks against Network Intrusion Detection Systems" in Ubuntu Security Podcast 194](/usp-194)
+- ["Fuzzing Configurations of Program Options" in Ubuntu Security Podcast 199](/usp-199)
