@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | A Novel Open Source Cyber Reasoning System </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="binary-analysis" />
+<meta name="tags" content="dataset" />
+<meta name="tags" content="attack-surface-approaximation" />
+<meta name="tags" content="vulnerability-discovery" />
+<meta name="tags" content="automatic-exploit-generation" />
+<meta name="tags" content="fuzzing" />
+<meta name="tags" content="dynamic-binary-instrumentation" />
+<meta name="tags" content="afl++" />
+<meta name="tags" content="qbdi" />
+<meta name="tags" content="latex" />
+<meta name="tags" content="open-source" />
+<meta name="tags" content="status-update" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/opencrs.html"
+    rel="bookmark"
+    title="Permalink to A Novel Open Source Cyber Reasoning System"
+    >A Novel Open Source Cyber Reasoning System</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-07-30T00:00:00+03:00">
+    Sun 30 July 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/binary-analysis.html"
+      ><small class="chip">binary-analysis</small></a
+    >
+    <a href="/tag/dataset.html"
+      ><small class="chip">dataset</small></a
+    >
+    <a href="/tag/attack-surface-approaximation.html"
+      ><small class="chip">attack-surface-approaximation</small></a
+    >
+    <a href="/tag/vulnerability-discovery.html"
+      ><small class="chip">vulnerability-discovery</small></a
+    >
+    <a href="/tag/automatic-exploit-generation.html"
+      ><small class="chip">automatic-exploit-generation</small></a
+    >
+    <a href="/tag/fuzzing.html"
+      ><small class="chip">fuzzing</small></a
+    >
+    <a href="/tag/dynamic-binary-instrumentation.html"
+      ><small class="chip">dynamic-binary-instrumentation</small></a
+    >
+    <a href="/tag/afl.html"
+      ><small class="chip">afl++</small></a
+    >
+    <a href="/tag/qbdi.html"
+      ><small class="chip">qbdi</small></a
+    >
+    <a href="/tag/latex.html"
+      ><small class="chip">latex</small></a
+    >
+    <a href="/tag/open-source.html"
+      ><small class="chip">open-source</small></a
+    >
+    <a href="/tag/status-update.html"
+      ><small class="chip">status-update</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<p>This month marked the end of my two-year master's degree at the University POLITECHNICA of Bucharest's Advanced Cybersecurity speciality. In addition to the coursework, these years involved research.</p>
+<p>The work began with a suggestion from my coordinator, Adrian-Răzvan Deaconescu. He brought up a term that I was unfamiliar with: cyber reasoning systems. Following some additional research, I discovered that DARPA held a competition called Cyber Grand Challenge in 2016, which was a CTF-style competition with automated players represented by cyber reasoning systems. The latter are automated sets of software components meant to automatically find, exploit, and patch executable vulnerabilities.</p>
+<p>Despite the passing of seven years, the open source CRS landscape has remained unchanged. This observation was the source of the story's intrigue and the impetus for a joint endeavour with Claudiu Ghenea to create an open source cyber reasoning system, OpenCRS.</p>
+<p>Fast forward to today, and we've completed the majority of the modules that comprise a CRS. Personally, I contributed to the development of several modules that are now housed in the <a href="https://github.com/CyberReasoningSystem">OpenCRS organization on GitHub</a>:
+• A dataset (<a href="https://github.com/CyberReasoningSystem/dataset">module</a> and <a href="https://github.com/CyberReasoningSystem/opencrs_dataset">resulting dataset</a>) containing public test suites of vulnerable ELF programs;
+• A <a href="https://github.com/CyberReasoningSystem/attack_surface_approximation">module</a> that uses static analysis with Ghidra and handcrafted arguments fuzzing with QBDI as a dynamic binary instrumentation engine to estimate the attack surface of an executable;
+• A vulnerability discovery <a href="https://github.com/CyberReasoningSystem/vulnerability_detection">module</a> that fuzzes using AFL++; and
+• A <a href="https://github.com/CyberReasoningSystem/automatic_exploit_generation">module</a> focusing on automated exploitation, based on a <a href="https://github.com/CyberReasoningSystem/zeratool_lib">fork</a> intended to improve an existing open source project.</p>
+<p>Aside from that, my thesis, "OpenCRS: Attack Surface Approximation, Vulnerabilities Discovery, and Automatic Exploitation of Binaries", is <a href="https://github.com/iosifache/MastersThesis">available on GitHub</a>. Because there were no updated templates, I generated <a href="https://github.com/cs-pub-ro/templates/pull/1">several</a> in the hopes that they will be merged and used by future generations in the department.</p>
+<p>OpenCRS is not yet fully functional because there is no orchestration module to coordinate all of the previously created modules. However, the project will be continued by future generations of students, and I am convinced that it will be ready for production in the near future.</p>     </main>
+  </body>
+</html>

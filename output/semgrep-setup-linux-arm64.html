@@ -74,25 +74,18 @@
   </div>
 </div>
 <br /><br />
+<blockquote>
+<p>As per <a href="https://github.com/returntocorp/semgrep/pull/8243">PR #8243</a>, it is now possible to just <code>pip install semgrep</code>.</p>
+</blockquote>
 <ol>
 <li>Download the repository: <code>git clone https://github.com/returntocorp/semgrep</code></li>
 <li>Set up the development environment: <code>make dev-setup</code></li>
-<li>
-<p>Install <code>opam</code></p>
-<p><code>apt-get install opam
-opam init
-eval $(opam config env)</code></p>
-</li>
-<li>
-<p>Build: <code>make</code></p>
-</li>
+<li>Install <code>opam</code>: <code>apt-get install opam</code></li>
+<li>Initialise <code>opam</code>: <code>opam init &amp;&amp; eval $(opam config env)</code></li>
+<li>Build: <code>make</code></li>
 <li>Install <code>pipenv</code>: <code>sudo apt install pipenv</code></li>
 <li>Downgrade <code>ruamel.yaml==0.16.0</code>: <code>pip install 'ruamel.yaml==0.16.0'</code></li>
-<li>
-<p>Install Semgrep's CLI</p>
-<p><code>cd cli
-python setup.py install</code></p>
-</li>
+<li>Install the Semgrep CLI: <code>cd cli &amp;&amp; python setup.py install</code></li>
 </ol>     </main>
   </body>
 </html>
