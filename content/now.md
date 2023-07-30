@@ -8,7 +8,6 @@ status: hidden
 - Hunting bugs at [Canonical](https://canonical.com)
 - Researching security papers at [Ubuntu Security Podcast](https://ubuntusecuritypodcast.org)
 - Discovering and exploiting bugs at [OpenCRS](https://github.com/CyberReasoningSystem)
-- Pursuing a cybersecurity master's degree at the [University Politehnica in Bucharest](https://upb.ro)
 
 <blockquote>
 💡 Inspired by Derek Sivers' <a href="https://sive.rs/nowff">/now</a>
