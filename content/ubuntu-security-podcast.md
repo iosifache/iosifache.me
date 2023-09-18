@@ -12,3 +12,4 @@ status: hidden
 - ["Modeling Realistic Adversarial Attacks against Network Intrusion Detection Systems" in Ubuntu Security Podcast 194](/usp-194)
 - ["Fuzzing Configurations of Program Options" in Ubuntu Security Podcast 199](/usp-199)
 - ["FLAME: Taming Backdoors in Federated Learning" in Ubuntu Security Podcast 204](/usp-204)
+- ["Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities" in Ubuntu Security Podcast 209](/usp-209)
