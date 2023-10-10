@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | OWASP Global AppSec Singapore 2023 </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="threat-modelling" />
+<meta name="tags" content="appsec" />
+<meta name="tags" content="asset-management" />
+<meta name="tags" content="architecture" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/owasp-global-appsec-23.html"
+    rel="bookmark"
+    title="Permalink to OWASP Global AppSec Singapore 2023"
+    >OWASP Global AppSec Singapore 2023</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-10-10T00:00:00+03:00">
+    Tue 10 October 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/threat-modelling.html"
+      ><small class="chip">threat-modelling</small></a
+    >
+    <a href="/tag/appsec.html"
+      ><small class="chip">appsec</small></a
+    >
+    <a href="/tag/asset-management.html"
+      ><small class="chip">asset-management</small></a
+    >
+    <a href="/tag/architecture.html"
+      ><small class="chip">architecture</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<p><img alt="Banner of the event" src="images/owasp-global-appsec-23/banner.png"></p>
+<h1>OWASP Global AppSec Singapore</h1>
+<p>The Open Web Application Security Project, the organisation behind the well-known <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>, organised the OWASP Global AppSec Singapore <strong>application security conference</strong>. I attended two days, October 4 and 5, one for a workshop and the other for talks.</p>
+<p>Despite its name and the normal style for Global AppSec conferences, the conference was online-only and adhered to the Singapore timezone. This meant an early start time for me (4 AM, for the Romanian timezone), but <a href="/htw-23">it was good to be able to attend How to Web in the afternoons</a>.</p>
+<h1>Top 3 events</h1>
+<p>Here are my personal favourites:</p>
+<h2>Threat Modelling: From None to Done</h2>
+<p>John DiLeo, a Solution Architecture Lead at <a href="https://www.iriusrisk.com/">IriusRisk</a> and the OWASP leader in New Zealand, led the 7-hour workshop. The presented workflow had a <strong>shift-left approach</strong>, prioritising security investments as near to the design phase as possible. This contrasts with the prior shift-right model, in which security personnel were focused on incident response on an inadequate infrastructure.</p>
+<p><strong>Threat modelling</strong> is a type of risk analysis in which the most valuable assets (i.e., anything that should be safeguarded from some attackers) and their threats (i.e., anything that could allow someone or anything to obtain, damage, or destroy an asset) are identified.</p>
+<p><img alt="Threat model from Synopsys" src="images/owasp-global-appsec-23/synopsys-threat-model.png"> </p>
+<p>The following characteristics of a threat model were taken into account:</p>
+<ul>
+<li>Location: in a persistent, sharable and redundant (with multiple backups) directory</li>
+<li>Involved persons: model creators (the people knowing the system really well), model owners (for accountability), model maintainer, and other stakeholders (for example, cyber insurance providers and customers)</li>
+<li>Lifetime: creation at the beginning of the existence of the system/application (or ASAP, if not available for an existent system/application), and an update per cycle</li>
+<li>Content<ul>
+<li>Protected assets or "What are we building?", by  using techniques such as data-flow diagrams and asset management</li>
+<li>Threats or "What can go wrong?" by using techniques such as attack trees, STRIDE, and threat libraries</li>
+<li>Possible mitigations or "What we will use?" (coupled with the concept of orders of magnitude, which is presented below)</li>
+<li>Risk acceptance or "Have all residual risks been accepted?" by doing a cost-benefits analysis over the candidate mitigations (as they will not remove the residual risk, but only decrease it)</li>
+<li>Mitigation verification or "How we will know it works?" by doing penetration tests.</li>
+</ul>
+</li>
+</ul>
+<p>An additional concept that I thought was important is the <strong>order of magnitude for mitigations</strong>, which can be combined with defence-in-depth: "<em>If a mitigation with an order of magnitude N (i.e., at the layer N in a layered security architecture) can fail, then another mitigation with the order N + 1 should be put in-place</em>".</p>
+<p>The workshop also included a hands-on component. Given a customer-facing, serverless web project, we choose one of its user stories: account details updating. We developed the threat model based on this.</p>
+<h2>A Retrospective on Application Security Failures</h2>
+<p>The presentation focused on <strong>application security posture management</strong>, incorporating subjects such as software composition analysis, SAST, DAST, developer learning platform, infrastructure as code scanning, and secret scanning.</p>
+<p>One key lesson offered by the presenter based on his experience was the goal of establishing security design patterns that are included by default in the products to avoid bug classes rather than filing Jira tickets for found concerns. Secret scanning, default encryption, application event logging, and input validation routines are examples of patterns.</p>
+<h2>Large-Scale Application Attack Surface Management</h2>
+<p>The significance of <strong>asset management</strong> was the beginning point for this discussion. Each organisation should have an up-to-date list of assets (software, servers, documents, services, and so on) in order to know what to fight against and where attackers might try to exploit.</p>
+<p>With this as a basis, the speaker went on to illustrate how organisations might identify their attack surface, or the set of places in their informational architectures where an attacker could try to access the organisation (e.g., APIs, DNS records, applications). OSINT, code review, code annotation, traffic collection and analysis, runtime instrumentation, and analysis of relevant files (such as API contracts and Android manifests) were all given as approaches.</p>     </main>
+  </body>
+</html>
