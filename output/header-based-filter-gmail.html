@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <title> @iosifache | Setting up a header-based automatic labeller for Gmail </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="productivity" />
+<meta name="tags" content="email" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/talks">Talks</a></li>
+          <li><a href="/almanach">Almanach</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/header-based-filter-gmail.html"
+    rel="bookmark"
+    title="Permalink to Setting up a header-based automatic labeller for Gmail"
+    >Setting up a header-based automatic labeller for Gmail</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-11-25T00:00:00+02:00">
+    Sat 25 November 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/productivity.html"
+      ><small class="chip">productivity</small></a
+    >
+    <a href="/tag/email.html"
+      ><small class="chip">email</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<p>The purpose of this guide is to set up a new hourly-executed App Script for:</p>
+<ol>
+<li>Iterating through all emails in your Inbox; and</li>
+<li>Archive and label each thread that has at least one email with a custom header.</li>
+</ol>
+<h1>Requirements</h1>
+<ul>
+<li>A label in Gmail, that you want to attach to this script</li>
+</ul>
+<h1>Setup</h1>
+<h2>I. Creating a new App Script</h2>
+<ol>
+<li>Access the <a class="external-links" href="https://script.google.com/home">App Script dashboard</a>.</li>
+<li>Press the "New project" button on the left.</li>
+<li>Click the name of the project, and set it to "AutoLabeller".</li>
+<li>Paste the below code snippet:</li>
+<li>Change the configuration of the script:<ul>
+<li><code>SEARCHED_HEADER</code>: SMTP header to be searched. For example, <code>X-ACME-Shared-Email: true</code>; and</li>
+<li><code>LABEL</code>: Gmail label to be attached to the emails. For example, the nested label <code>shared-inboxes/acme</code>.</li>
+</ul>
+</li>
+<li>Add a new service, choose Gmail API, and click "Add".</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">MAX_AGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1h&quot;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">SEARCHED_HEADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">LABEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">processInbox</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">GmailApp</span><span class="p">.</span><span class="nx">getUserLabelByName</span><span class="p">(</span><span class="nx">LABEL</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">GmailApp</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="s2">&quot;label:inbox newer_than:&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">MAX_AGE</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">threads</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">threads</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hasHeader</span><span class="p">(</span><span class="nx">thread</span><span class="p">)){</span>
+<span class="w">            </span><span class="nx">thread</span><span class="p">.</span><span class="nx">addLabel</span><span class="p">(</span><span class="nx">label</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">thread</span><span class="p">.</span><span class="nx">moveToArchive</span><span class="p">()</span>
+
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Detected email to label, with ID &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">thread</span><span class="p">.</span><span class="nx">getId</span><span class="p">())</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">hasHeader</span><span class="p">(</span><span class="nx">thread</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">thread</span><span class="p">.</span><span class="nx">getMessages</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">messages</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">messages</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">message</span><span class="p">.</span><span class="nx">getRawContent</span><span class="p">()</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">SEARCHED_HEADER</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>II. Creating a Trigger</h2>
+<ol>
+<li>Select the clock icon from the left menu.</li>
+<li>Press the "Add Trigger" button.</li>
+<li>Choose the following details:<ul>
+<li>Function: <code>processInbox</code>;</li>
+<li>Time-based trigger: "Hour timer"; and</li>
+<li>Interval: "Every hour".</li>
+</ul>
+</li>
+<li>Save the timer.</li>
+</ol>
+<h2>III. Deploying the Script</h2>
+<ol>
+<li>Press the "Deploy" button from the top menu, and choose "New Deployment".</li>
+<li>Choose the "Web app" type, and change the description to "Script for labelling email by inspecting the headers".</li>
+<li>Press the "Deploy" button.</li>
+</ol>     </main>
+  </body>
+</html>
