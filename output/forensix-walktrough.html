@@ -39,6 +39,7 @@
         </ul>
         <ul>
           <li><a href="/">Articles</a></li>
+          <li><a href="/talks">Talks</a></li>
           <li><a href="/almanach">Almanach</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/now">Now</a></li>
@@ -72,11 +73,11 @@
 <br /><br />
 <h1>Scenario</h1>
 <p>Given a dump of an <code>%APPDATA%</code> folder from a Windows host, retrieve Chrome usage data.</p>
-<p>The above-mentioned folder is taken from the <a href="https://github.com/8061xjl/ctfarchive-sctf-3.0/tree/main/files/forensics/digging-in-the-dump">Digging In The Dump</a> challenge, part of Sieberrsec CTF 3.0.</p>
+<p>The above-mentioned folder is taken from the <a class="external-links" href="https://github.com/8061xjl/ctfarchive-sctf-3.0/tree/main/files/forensics/digging-in-the-dump">Digging In The Dump</a> challenge, part of Sieberrsec CTF 3.0.</p>
 <h1>Choosing a Tool</h1>
-<p>As my primary operating system is Ubuntu, I skipped tools like <a href="https://www.nirsoft.net/utils/browsing_history_view.html">BrowsingHistoryView</a> and <a href="https://www.mitec.cz/ihb.html">MiTeC Internet History Browser</a>, which are Windows-only.</p>
-<p>Searching out on GitHub, I found the bachelors project of <a href="https://github.com/ChmaraX">Adam Chmara</a>, <a href="https://github.com/ChmaraX/forensix">ForensiX</a>. It is "<em>Google Chrome forensic tool to process, analyze and visualize browsing artifacts</em>", built on Docker Compose and with a beautiful, web-based user interface.</p>
-<p>Another alternative was <a href="https://github.com/browser-history/browser-history"><code>browser-history</code></a>, a Python3 library and CLI tool which supports the most popular browsers.</p>
+<p>As my primary operating system is Ubuntu, I skipped tools like <a class="external-links" href="https://www.nirsoft.net/utils/browsing_history_view.html">BrowsingHistoryView</a> and <a class="external-links" href="https://www.mitec.cz/ihb.html">MiTeC Internet History Browser</a>, which are Windows-only.</p>
+<p>Searching out on GitHub, I found the bachelors project of <a class="external-links" href="https://github.com/ChmaraX">Adam Chmara</a>, <a class="external-links" href="https://github.com/ChmaraX/forensix">ForensiX</a>. It is "<em>Google Chrome forensic tool to process, analyze and visualize browsing artifacts</em>", built on Docker Compose and with a beautiful, web-based user interface.</p>
+<p>Another alternative was <a class="external-links" href="https://github.com/browser-history/browser-history"><code>browser-history</code></a>, a Python3 library and CLI tool which supports the most popular browsers.</p>
 <h1>Filtering the Artifacts</h1>
 <ol>
 <li>Create a folder to dump the multipart archive: <code>mkdir data</code>.</li>
@@ -173,8 +174,8 @@ e972dda0247e<span class="w">   </span>chmarax/forensix:server<span class="w">   
 <hr>
 <h1>References</h1>
 <ul>
-<li><a href="https://github.com/ChmaraX/forensix">ForensiX repository</a></li>
-<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md">Chromium Documentation on User Data Directories</a></li>
+<li><a class="external-links" href="https://github.com/ChmaraX/forensix">ForensiX repository</a></li>
+<li><a class="external-links" href="https://chromium.googlesource.com/chromium/src/+/master/docs/user_data_dir.md">Chromium Documentation on User Data Directories</a></li>
 </ul>     </main>
   </body>
 </html>

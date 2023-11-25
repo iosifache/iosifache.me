@@ -10,6 +10,10 @@ body {
   --primary-inverse: #FFF;
 }
 
+.internal-links, .external-links {
+  text-decoration: underline !important;
+}
+
 /* Chips from */
 .chip {
     /* Center the content */

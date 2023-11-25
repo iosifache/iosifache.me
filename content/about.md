@@ -4,7 +4,6 @@ date: 2023-11-25 18:53
 slug: about
 status: hidden
 ---
-
 - Clearing the mail inbox on `hi at iosifache dot me`
 - Networking on [LinkedIn](https://www.linkedin.com/in/iosifache), [X](https://x.com/iosifache), and [Instagram](https://instagram.com/iosifache)
 - Coding on [Github](https://github.com/iosifache)

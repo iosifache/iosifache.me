@@ -41,6 +41,7 @@
         </ul>
         <ul>
           <li><a href="/">Articles</a></li>
+          <li><a href="/talks">Talks</a></li>
           <li><a href="/almanach">Almanach</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/now">Now</a></li>
@@ -80,7 +81,7 @@
 <br /><br />
 <h1>Steps to Reproduce</h1>
 <h2>Setting Up the Fuzzing Environment</h2>
-<p>The first step that needs to be completed is the setup of the fuzzing environment. As the manual installation could be a draining process, it can be used an unofficial Docker image (namely <a href="https://hub.docker.com/r/mykter/afl-training/dockerfile"><code>mykter/afl-training</code></a>) with all the tools already installed. This was primarily used for a workshop in which concepts about the fuzzer American Fuzzy Lop (AFL) are introduced via practical exercises.</p>
+<p>The first step that needs to be completed is the setup of the fuzzing environment. As the manual installation could be a draining process, it can be used an unofficial Docker image (namely <a class="external-links" href="https://hub.docker.com/r/mykter/afl-training/dockerfile"><code>mykter/afl-training</code></a>) with all the tools already installed. This was primarily used for a workshop in which concepts about the fuzzer American Fuzzy Lop (AFL) are introduced via practical exercises.</p>
 <ol>
 <li>
 <p>Install Docker by running the official installation script.</p>
@@ -107,7 +108,7 @@ ghcr.io/mykter/fuzz-training
 </li>
 </ol>
 <h2>Finding and Compiling (with Instrumentation) an Open-Source Project</h2>
-<p>In this guide, due to the different build processes implemented by each project, a specific open-source one was chosen: <a href="https://github.com/dbohdan/hicolor">HiColor</a>. It is a quite popular (judging by the stars on GitHub) program for converting PNG images into 15- or 16-bit RBG color ones.</p>
+<p>In this guide, due to the different build processes implemented by each project, a specific open-source one was chosen: <a class="external-links" href="https://github.com/dbohdan/hicolor">HiColor</a>. It is a quite popular (judging by the stars on GitHub) program for converting PNG images into 15- or 16-bit RBG color ones.</p>
 <ol>
 <li>
 <p>Clone the project into the home of the <code>fuzzer</code> user (the default directory after the above login).</p>
@@ -335,15 +336,15 @@ encode_results/default/crashes/id:000000,sig:11,src:001013,time:93879,op:havoc,r
 identify-im6.q16:<span class="w"> </span>insufficient<span class="w"> </span>image<span class="w"> </span>data<span class="w"> </span><span class="k">in</span><span class="w"> </span>file<span class="w"> </span><span class="sb">`</span>../crashes/id:000007,sig:11,src:001013,time:93879,op:havoc,rep:2<span class="err">&#39;</span><span class="w"> </span>@<span class="w"> </span>error/png.c/ReadPNGImage/4098.
 </code></pre></div>
 
-<p>By correlating this information with the <a href="https://github.com/dbohdan/hicolor/blob/master/cli.c">source code</a> of the analyzed program, the root cause can be reached. AFL, in its input generation phase, modified the sizes (height and width) stored in the PNG header with the large sizes seen in the <code>file</code> command output. The project uses an open-source header-only C library (namely <code>cute_png.h</code>) to loads the PNG files.</p>
+<p>By correlating this information with the <a class="external-links" href="https://github.com/dbohdan/hicolor/blob/master/cli.c">source code</a> of the analyzed program, the root cause can be reached. AFL, in its input generation phase, modified the sizes (height and width) stored in the PNG header with the large sizes seen in the <code>file</code> command output. The project uses an open-source header-only C library (namely <code>cute_png.h</code>) to loads the PNG files.</p>
 <p>Further, both the library and <code>hicolor</code> does not check if the image is valid (like <code>identify</code>, which detects that the declared pixels from the header are not stored in the data section too) and the image is loaded as it is. When the image needs to be converted to the custom file format, the <code>malloc</code> fails and the programs tries to dereference a <code>NULL</code> pointer, which raises a <code>SIGSERV</code>.</p>
 <h1>Last Step</h1>
-<p>The bug discovered in this guide was reported by creating a <a href="https://github.com/dbohdan/hicolor/issues/2">new issue</a> on the repository.</p>
+<p>The bug discovered in this guide was reported by creating a <a class="external-links" href="https://github.com/dbohdan/hicolor/issues/2">new issue</a> on the repository.</p>
 <hr>
 <h1>References</h1>
 <ul>
-<li><a href="https://afl-1.readthedocs.io/en/latest/index.html">AFL Documentation</a></li>
-<li><a href="https://github.com/mykter/afl-training">"Fuzzing with AFL" Workshop</a></li>
+<li><a class="external-links" href="https://afl-1.readthedocs.io/en/latest/index.html">AFL Documentation</a></li>
+<li><a class="external-links" href="https://github.com/mykter/afl-training">"Fuzzing with AFL" Workshop</a></li>
 </ul>     </main>
   </body>
 </html>

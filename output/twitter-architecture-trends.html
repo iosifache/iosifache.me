@@ -40,6 +40,7 @@
         </ul>
         <ul>
           <li><a href="/">Articles</a></li>
+          <li><a href="/talks">Talks</a></li>
           <li><a href="/almanach">Almanach</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/now">Now</a></li>
@@ -111,7 +112,7 @@
 <h1>Architectural Evolution</h1>
 <p>We can create the following list of architectural observations by analyzing many resources from the Internet (linked in the last section). Their goal is not to provide a theoretical model for why Twitter engineers made those decisions. We can only <strong>deduce the first principles</strong> and <strong>back them up with concrete examples</strong>.</p>
 <h2>Making Product Features More Important Than Architectural Perfection</h2>
-<p>Many engineers declared that the source code of Twitter is in a completely <strong>unstable, but functioning state</strong>. Among them are the ones fired after the <a href="https://abcnews.go.com/Business/twitter-sends-email-employees-announcing-layoffs-friday/story?id=92635005">recent layoff</a>. This state ensures the functioning of the application, but they accumulated too much technical debt.</p>
+<p>Many engineers declared that the source code of Twitter is in a completely <strong>unstable, but functioning state</strong>. Among them are the ones fired after the <a class="external-links" href="https://abcnews.go.com/Business/twitter-sends-email-employees-announcing-layoffs-friday/story?id=92635005">recent layoff</a>. This state ensures the functioning of the application, but they accumulated too much technical debt.</p>
 <p>It is not sure if this modus operandi continued after 2013. In his presentation at InfoQ, Raffi Krikorian confirmed the existence of a <strong>dedicated architecture team</strong>. Its purposes were designing a holistic architecture and maintaining a list of technical debts, which engineers wanted to fix.</p>
 <p>These two examples depict a common theme in companies with explosive growth. Twitter prioritizes product features over architectural perfection. The decision may lead to scars in the form of debt, but the company’s purpose (to keep the users involved and satisfied) is accomplished.</p>
 <h2>Migrating from Monoliths to SOA</h2>
@@ -144,11 +145,11 @@
 </ol>
 <p>Jeremy Cloud detailed other resilience techniques, such as a <strong>dark mode</strong> for each feature. It consists of the ability to disable the feature in critical conditions (e.g. service failure).</p>
 <h2>Relying on Third-Parties for Specialized Software</h2>
-<p>Twitter builds a lot of in-house software. Some of it is publicly available on <a href="https://github.com/twitter">their GitHub organization</a>. However, there are times when engineers do not need to devote time to a specific problem. This is not because they cannot build the required software, but a lack of fit between the technical issues and the company's revenue streams.</p>
+<p>Twitter builds a lot of in-house software. Some of it is publicly available on <a class="external-links" href="https://github.com/twitter">their GitHub organization</a>. However, there are times when engineers do not need to devote time to a specific problem. This is not because they cannot build the required software, but a lack of fit between the technical issues and the company's revenue streams.</p>
 <p>An example is again the migration of the data platform to <strong>Google Cloud</strong>. GCP already has mature tools for data analysis and machine learning in its software-as-a-service suite:</p>
 <ul>
-<li><a href="https://cloud.google.com/bigquery/">BigQuery</a>, an enterprise data warehouse with a SQL engine; and</li>
-<li><a href="https://cloud.google.com/looker-studio">Looker Studio</a> (known before December 2022 as Data Studio), a big data visualization tool.</li>
+<li><a class="external-links" href="https://cloud.google.com/bigquery/">BigQuery</a>, an enterprise data warehouse with a SQL engine; and</li>
+<li><a class="external-links" href="https://cloud.google.com/looker-studio">Looker Studio</a> (known before December 2022 as Data Studio), a big data visualization tool.</li>
 </ul>
 <p>2021 was the year of another migration to third-party software. Before, Twitter used an in-house solution, named Logles. The main issue was performance-related: only 10% of the submitted logs ended up being stored on disk, the rest being dropped due to rate limits.</p>
 <p>They successfully migrated to <strong>Splunk Enterprise</strong>. The logging architecture consisted in:</p>
@@ -161,8 +162,8 @@
 <p>It is unclear what will happen with Twitter’s architecture in the following years. The only thing that we, as outsiders, can do is to watch the last months' evolution and to (try to) predict the future.</p>
 <p>After Elon’s arrival, Twitter added <strong>many features</strong>, the most notable being Twitter Blue, long-form tweets, and an edit feature for tweets. Some events contributed to altering the reputation of the platform:</p>
 <ul>
-<li>**<a href="https://techcrunch.com/2022/12/28/twitter-down-outage/?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAADFkh-uz1saLakfJaLIirvfw1Pgpes__g-AdGsII8SK4Hlp-E57iI2HB_1G7tXDszyQ80k81RNLohhlKa0LwI8oLb0jws0n3ro5WinMfTxRh0X0cA11BLvaxIS1ewvu4i2N_XN4mO5XPr1xUs9AaXNF01j-eBo2kqZI0MvmFUpoZ">Outage** produced by changes in the backend architecture;</a> and</li>
-<li>**<a href="https://www.reuters.com/technology/twitter-hacked-200-million-user-email-addresses-leaked-researcher-says-2023-01-05/">Information leaks**, where millions of users’ emails were stolen by black-hat hackers</a>.</li>
+<li>**<a class="external-links" href="https://techcrunch.com/2022/12/28/twitter-down-outage/?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAADFkh-uz1saLakfJaLIirvfw1Pgpes__g-AdGsII8SK4Hlp-E57iI2HB_1G7tXDszyQ80k81RNLohhlKa0LwI8oLb0jws0n3ro5WinMfTxRh0X0cA11BLvaxIS1ewvu4i2N_XN4mO5XPr1xUs9AaXNF01j-eBo2kqZI0MvmFUpoZ">Outage** produced by changes in the backend architecture;</a> and</li>
+<li>**<a class="external-links" href="https://www.reuters.com/technology/twitter-hacked-200-million-user-email-addresses-leaked-researcher-says-2023-01-05/">Information leaks**, where millions of users’ emails were stolen by black-hat hackers</a>.</li>
 </ul>
 <p>But to orient the discussion to the future, an opinion to consider is Dave Troy’s. He states that Elon plan is to slow down the development of the current technology and to free the bird from the closed-source cage.</p>
 <p><a href="https://twitter.com/davetroy/status/1586166535592509440">
@@ -190,18 +191,18 @@
 <hr>
 <h1>References</h1>
 <ul>
-<li>23 Oct 2012: <a href="https://www.infoq.com/presentations/Real-Time-Delivery-Twitter">Real-Time Delivery Architecture at Twitter</a></li>
-<li>03 Jul 2013: <a href="https://www.infoq.com/presentations/twitter-soa/">Decomposing Twitter: Adventures in Service-Oriented Architecture</a></li>
-<li>08 Jul 2013: <a href="http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html">The Architecture Twitter Uses to Deal with 150M Active Users, 300K QPS, a 22 MB/S Firehose, and Send Tweets in Under 5 Seconds</a></li>
-<li>19 Jan 2017: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2017/the-infrastructure-behind-twitter-scale">The Infrastructure Behind Twitter: Scale</a></li>
-<li>3 May 2018: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/a-new-collaboration-with-google-cloud">A new collaboration with Google Cloud</a></li>
-<li>07 Apr 2019: <a href="https://www.youtube.com/watch?v=rBNFwdVDlyo">Twitter's GCP Architecture for Its Petabyte-Scale Data Storage in GCS</a></li>
-<li>13 Aug 2021: <a href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2021/logging-at-twitter-updated">Logging at Twitter: Updated</a></li>
-<li>16 Mar 2022: <a href="https://blog.hootsuite.com/twitter-statistics/">33 Twitter Stats That Matter to Marketers in 2023</a></li>
-<li>08 Oct 2022: <a href="https://www.youtube.com/watch?v=Pym8Evbf7Ak">How Twitter maximizes performance with BigQuery</a></li>
-<li>31 Oct 2022: <a href="https://news.yahoo.com/bluesky-potential-twitter-alternative-being-111738532.html">What is Bluesky, the potential Twitter alternative being tested by former CEO Jack Dorsey?</a></li>
-<li>19 Nov 2022: <a href="https://miro.com/app/board/uXjVPBnTJmM=/">Twitter Architecture Explained</a></li>
-<li>27 Nov 2022: <a href="https://www.youtube.com/watch?v=sxtqbUQqoNc">Leaked Twitter Architecture? Reaction and Analysis</a></li>
+<li>23 Oct 2012: <a class="external-links" href="https://www.infoq.com/presentations/Real-Time-Delivery-Twitter">Real-Time Delivery Architecture at Twitter</a></li>
+<li>03 Jul 2013: <a class="external-links" href="https://www.infoq.com/presentations/twitter-soa/">Decomposing Twitter: Adventures in Service-Oriented Architecture</a></li>
+<li>08 Jul 2013: <a class="external-links" href="http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-with-150m-active-users.html">The Architecture Twitter Uses to Deal with 150M Active Users, 300K QPS, a 22 MB/S Firehose, and Send Tweets in Under 5 Seconds</a></li>
+<li>19 Jan 2017: <a class="external-links" href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2017/the-infrastructure-behind-twitter-scale">The Infrastructure Behind Twitter: Scale</a></li>
+<li>3 May 2018: <a class="external-links" href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/a-new-collaboration-with-google-cloud">A new collaboration with Google Cloud</a></li>
+<li>07 Apr 2019: <a class="external-links" href="https://www.youtube.com/watch?v=rBNFwdVDlyo">Twitter's GCP Architecture for Its Petabyte-Scale Data Storage in GCS</a></li>
+<li>13 Aug 2021: <a class="external-links" href="https://blog.twitter.com/engineering/en_us/topics/infrastructure/2021/logging-at-twitter-updated">Logging at Twitter: Updated</a></li>
+<li>16 Mar 2022: <a class="external-links" href="https://blog.hootsuite.com/twitter-statistics/">33 Twitter Stats That Matter to Marketers in 2023</a></li>
+<li>08 Oct 2022: <a class="external-links" href="https://www.youtube.com/watch?v=Pym8Evbf7Ak">How Twitter maximizes performance with BigQuery</a></li>
+<li>31 Oct 2022: <a class="external-links" href="https://news.yahoo.com/bluesky-potential-twitter-alternative-being-111738532.html">What is Bluesky, the potential Twitter alternative being tested by former CEO Jack Dorsey?</a></li>
+<li>19 Nov 2022: <a class="external-links" href="https://miro.com/app/board/uXjVPBnTJmM=/">Twitter Architecture Explained</a></li>
+<li>27 Nov 2022: <a class="external-links" href="https://www.youtube.com/watch?v=sxtqbUQqoNc">Leaked Twitter Architecture? Reaction and Analysis</a></li>
 </ul>     </main>
   </body>
 </html>
