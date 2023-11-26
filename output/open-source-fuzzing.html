@@ -142,10 +142,10 @@ cd ~/samples_images/png
 </li>
 <li>
 <p>Transform each image into its <code>.hic</code> (HiColor format) correspondent.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">mkdir</span><span class="w"> </span><span class="o">~/</span><span class="nv">sample_images</span><span class="o">/</span><span class="nv">hic</span>
-<span class="nv">find</span><span class="w"> </span>.<span class="w"> </span>\
-<span class="o">-</span><span class="nv">name</span><span class="w"> </span><span class="s2">&quot;*.png&quot;</span><span class="w"> </span>\
-<span class="o">-</span><span class="k">exec</span><span class="w"> </span><span class="o">~/</span><span class="nv">hicolor</span><span class="w"> </span><span class="nv">encode</span><span class="w"> </span>{}<span class="w"> </span><span class="o">~/</span><span class="nv">sample_images</span><span class="o">/</span><span class="nv">hic</span><span class="o">/</span>{}.<span class="nv">hic</span><span class="w"> </span>\<span class="c1">;</span>
+<div class="highlight"><pre><span></span><code>mkdir ~/sample_images/hic
+find . \
+-name &quot;*.png&quot; \
+-exec ~/hicolor encode {} ~/sample_images/hic/{}.hic \;
 </code></pre></div>
 
 </li>
