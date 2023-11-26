@@ -8,8 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 pelican = {extras = ["markdown"], version = "^4.8.0"}
-pelican-yaml-metadata = {git = "https://github.com/pR0Ps/pelican-yaml-metadata.git"}
 pelican-linkclass = "^2.1.2"
+pelican-yaml-metadata = "^2.1.2"
 
 [build-system]
 requires = ["poetry-core"]
