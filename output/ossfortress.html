@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+     <title> @iosifache | The Open Source Fortress </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="threat-modelling" />
+<meta name="tags" content="secret-scanning" />
+<meta name="tags" content="dependency-scanning" />
+<meta name="tags" content="linting" />
+<meta name="tags" content="code-querying" />
+<meta name="tags" content="fuzzing" />
+<meta name="tags" content="symbolic-execution" />
+<meta name="tags" content="owasp-threat-tragon" />
+<meta name="tags" content="gitleaks" />
+<meta name="tags" content="osv-scanner" />
+<meta name="tags" content="flawfinder" />
+<meta name="tags" content="semgrep" />
+<meta name="tags" content="open-source" />
+<meta name="tags" content="defcamp" />
+<meta name="tags" content="ubuntu-summit" />
+<meta name="tags" content="status-update" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/talks">Talks</a></li>
+          <li><a href="/podcasts">Podcasts</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/ossfortress.html"
+    rel="bookmark"
+    title="Permalink to The Open Source Fortress"
+    >The Open Source Fortress</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2023-12-18T00:00:00+02:00">
+    Mon 18 December 2023
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/threat-modelling.html"
+      ><small class="chip">threat-modelling</small></a
+    >
+    <a href="/tag/secret-scanning.html"
+      ><small class="chip">secret-scanning</small></a
+    >
+    <a href="/tag/dependency-scanning.html"
+      ><small class="chip">dependency-scanning</small></a
+    >
+    <a href="/tag/linting.html"
+      ><small class="chip">linting</small></a
+    >
+    <a href="/tag/code-querying.html"
+      ><small class="chip">code-querying</small></a
+    >
+    <a href="/tag/fuzzing.html"
+      ><small class="chip">fuzzing</small></a
+    >
+    <a href="/tag/symbolic-execution.html"
+      ><small class="chip">symbolic-execution</small></a
+    >
+    <a href="/tag/owasp-threat-tragon.html"
+      ><small class="chip">owasp-threat-tragon</small></a
+    >
+    <a href="/tag/gitleaks.html"
+      ><small class="chip">gitleaks</small></a
+    >
+    <a href="/tag/osv-scanner.html"
+      ><small class="chip">osv-scanner</small></a
+    >
+    <a href="/tag/flawfinder.html"
+      ><small class="chip">flawfinder</small></a
+    >
+    <a href="/tag/semgrep.html"
+      ><small class="chip">semgrep</small></a
+    >
+    <a href="/tag/open-source.html"
+      ><small class="chip">open-source</small></a
+    >
+    <a href="/tag/defcamp.html"
+      ><small class="chip">defcamp</small></a
+    >
+    <a href="/tag/ubuntu-summit.html"
+      ><small class="chip">ubuntu-summit</small></a
+    >
+    <a href="/tag/status-update.html"
+      ><small class="chip">status-update</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<p>After 100+ commits and many presentations, I believe it's time to share some news with you.</p>
+<p>Multiple posts on social media contributed to the creation of <a class="external-links" href="https://ossfortress.io">The Open Source Fortress</a>, a workshop that explains what open source tools are available for discovering vulnerabilities in codebases and how to use them.</p>
+<p>The workshop employs a customised, purposely insecure Python and C codebase to demonstrate the use of different techniques and tools:</p>
+<ul>
+<li>Threat modelling with OWASP Threat Dragon;</li>
+<li>Secret scanning with Gitleaks;</li>
+<li>Dependency scanning with Google Open Source Security Team's OSV-Scanner;</li>
+<li>Linting with Bandit and flawfinder;</li>
+<li>Code querying with Semgrep;</li>
+<li>Fuzzing with AFL++; and</li>
+<li>Symbolic execution with KLEE.</li>
+</ul>
+<p>Sounds appealing? You can begin by reading more about the workshop on <a class="external-links" href="https://ossfortress.io">its home page</a>, then complete the tasks, making sure to verify <a class="external-links" href="https://ossfortress.io/checklist">the accompanying checklist</a> or <a class="external-links" href="https://ossfortress.io/cheatsheet">cheatsheet with vulnerability detection commands</a>.</p>
+<p>What if the workshop misses covering an excellent tool you're using to uncover flaws in your codebase? Both the workshop and the goat-like application are open sourced on <a class="external-links" href="https://github.com/iosifache/oss_fortress">GitHub</a>. You can spend a few seconds opening an issue with the details of this tool, or a dozen minutes writing a guide for it. The makers of that tool will be pleased to learn that you took the time to publicise their work!</p>
+<p>Furthermore, the community became aware of this work because of two conferences.</p>
+<p><a class="external-links" href="https://events.canonical.com/event/31/">Ubuntu Summit</a>, held this year in Latvia's capital, provided an ideal setting for the workshop's debut: a group of open source, Linux, and Ubuntu enthusiasts learned about the information included in the workshop and worked on the proposed tasks.</p>
+<p>The other conference was Bucharest's <a class="external-links" href="https://def.camp/">DefCamp</a>, where I gave <a class="external-links" href="https://ossfortress.io/defcamp">a 30-minute talk</a> about vulnerability detection concepts and received feedback. The potential of DefCamp to bring together the Romanian community in the same location, in addition to the participants from other countries, was the icing on the cake. It was fantastic to talk with old friends, folks I had only communicated with online, and interesting people I met at this year's conference.</p>     </main>
+  </body>
+</html>
