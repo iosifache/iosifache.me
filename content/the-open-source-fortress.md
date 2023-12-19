@@ -21,8 +21,6 @@ date: 2023-12-18
 slug: ossfortress
 ---
 
-After 100+ commits and many presentations, I believe it's time to share some news with you.
-
 Multiple posts on social media contributed to the creation of [The Open Source Fortress](https://ossfortress.io), a workshop that explains what open source tools are available for discovering vulnerabilities in codebases and how to use them.
 
 The workshop employs a customised, purposely insecure Python and C codebase to demonstrate the use of different techniques and tools:
