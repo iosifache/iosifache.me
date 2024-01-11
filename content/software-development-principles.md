@@ -2,10 +2,10 @@
 title: Software Development Principles
 summary: Software development principles, seasoned with a bit of Python
 tags:
-  - development
-  - principles
-  - python
-  - book-summary
+    - development
+    - principles
+    - python
+    - book-summary
 date: 2022-09-11
 slug: software-development-principles
 ---
@@ -24,49 +24,49 @@ slug: software-development-principles
 ## Naming
 
 - Use intention-revealing names.
-  - `elapsed_time_in_days`, not `d` (context-dependent)
-  - `game_board`, not `the_list` (context-dependent)
+    - `elapsed_time_in_days`, not `d` (context-dependent)
+    - `game_board`, not `the_list` (context-dependent)
 - Avoid disinformation.
-  - `accounts`, not `accounts_list` (linked to the implementation, namely an iterable of type `list`)
+    - `accounts`, not `accounts_list` (linked to the implementation, namely an iterable of type `list`)
 - Make meaningful distinction between variables with close names.
-  - `money` and `money_amount` are the same when used in the same context.
-  - There is no difference between `Product`, `ProductData` and `ProductInfo` due to the noise words used as suffixes.
+    - `money` and `money_amount` are the same when used in the same context.
+    - There is no difference between `Product`, `ProductData` and `ProductInfo` due to the noise words used as suffixes.
 - Use pronounceable names.
-  - `generation_timestamp`, not `gen_time_ymdhms`
+    - `generation_timestamp`, not `gen_time_ymdhms`
 - Use searchable names.
-  - Too generic search when using `7`. A constant named `DAYS_IN_WEEK` is better.
+    - Too generic search when using `7`. A constant named `DAYS_IN_WEEK` is better.
 - Avoid encodings, mental mapping, prefixes, and type information.
-  - `multiplication_factor`, not simply `f`
-  - `__users`, not `__private_users`
-  - `accounts`, not `accounts_dictionary`
+    - `multiplication_factor`, not simply `f`
+    - `__users`, not `__private_users`
+    - `accounts`, not `accounts_dictionary`
 - Avoid abstract words such as:
-  - `processor`
-  - `data`
-  - `info`
-  - `controller`
-  - `manager`
+    - `processor`
+    - `data`
+    - `info`
+    - `controller`
+    - `manager`
 - Functions should have verbs in their names.
-  - `pay_employee()`, not `new_payment()`
+    - `pay_employee()`, not `new_payment()`
 - Don't be cute or use puns.
-  - Plain `kill()`, not `whack()`
+    - Plain `kill()`, not `whack()`
 - Make the names context-specific
-  - A `zipcode` in a context where `source_address` and `destination_address` can refer to any of them. Transform it into `source_zipcode` or `destination_zipcode`.
+    - A `zipcode` in a context where `source_address` and `destination_address` can refer to any of them. Transform it into `source_zipcode` or `destination_zipcode`.
 
 ## Comments
 
 - Use code to document the code.
-  - `employee.is_eligible_for_full_benefits()`, not `if (employee.has_flag(HOURLY) && employee.age > 65) // check if the employee is eligible for full benefits`
+    - `employee.is_eligible_for_full_benefits()`, not `if (employee.has_flag(HOURLY) && employee.age > 65) // check if the employee is eligible for full benefits`
 - Use good comments:
-  - Legal, for example copyrights
-  - Description of a decision
-  - `TODO` comments
+    - Legal, for example copyrights
+    - Description of a decision
+    - `TODO` comments
 - Avoid bad comments:
-  - Dependent information, such as constants values and parameters names that could be changed in future implementations
-  - Commented-out code
-    - Just remove it, you have `git` to restore it if you need to.
-  - Journal comments (use `git blame` instead)
-  - Position markers, such as `// Public methods`
-  - Obvious comments, such as `// Defaults constructor`
+    - Dependent information, such as constants values and parameters names that could be changed in future implementations
+    - Commented-out code
+      - Just remove it, you have `git` to restore it if you need to.
+    - Journal comments (use `git blame` instead)
+    - Position markers, such as `// Public methods`
+    - Obvious comments, such as `// Defaults constructor`
 
 ## Lines of Code
 
@@ -80,11 +80,11 @@ slug: software-development-principles
 ### Functionality
 
 - Do one thing.
-  - `save_page_to_file` calls multiple functions to: download page and write the content to a file. It does not execute this whole functionality on its own.
+    - `save_page_to_file` calls multiple functions to: download page and write the content to a file. It does not execute this whole functionality on its own.
 - Only one level of abstraction per function
-  - A function `get_links_from_html_page` downloads the page and calls another function to search the effective text with a RegEx (which is at another abstraction level).
+    - A function `get_links_from_html_page` downloads the page and calls another function to search the effective text with a RegEx (which is at another abstraction level).
 - Do only what's expected.
-  - A `check_password` function will not initialize a session.
+    - A `check_password` function will not initialize a session.
 
 ### Structure
 
@@ -121,7 +121,7 @@ slug: software-development-principles
 - **Single Responsibility Principle** (abbreviated SRP) or **High Cohesion**: A class should have one and only one reason to change.
 - **Low coupling**: A class should have the least possible dependencies.
 - **Dependency injection**: Delegate secondary responsibilities to another objects that are dedicated for that purpose.
-  - Do not manage the profile picture in a `User` class, just create a new `ProfilePicture` one that manages itself.
+    - Do not manage the profile picture in a `User` class, just create a new `ProfilePicture` one that manages itself.
 - **Composition over Inheritance** (abbreviated CoI): Prefer embedding of different objects within another object (according to the dependency injection principle) instead of inheritance. The latter will expose all the public methods of the parent class and is limited by some programming languages (for example, multiple inheritance could not be achieved).
 - **Interface Segregation Principle** (abbreviated ISP): A client should not have access to methods it doesn't use. If a broader interface is used, another interface (called role interface) can be created to limit the exposed methods.
 - **Liskov Substitution Principle** (abbreviated LSP): If a class is substituted with any of its subclasses, the program should work well. This implies that the return types and exceptions types remains the same. In addition, no side effect is introduced.
@@ -134,7 +134,7 @@ slug: software-development-principles
 ### Methods
 
 - **Law of Demeter**: A method should not know about the implementation of an object it manipulates.
-  - `user.profile_picture.badge`, not `user.get_profile_picture().get_badge()`.
+    - `user.profile_picture.badge`, not `user.get_profile_picture().get_badge()`.
 - If a method does not use the parent object, transform it into a `@staticmethod`.
 
 ### Members
@@ -154,12 +154,12 @@ slug: software-development-principles
 - Place the called functions after the callee. The code can be read as a newspaper.
 - Add a docstring describing the source code functionality.
 - Maintain a predictable structure:
-  - Imports
-  - Constants
-  - Type annotations aliases
-  - Enumerations
-  - Classes
-  - Module-level functions
+    - Imports
+    - Constants
+    - Type annotations aliases
+    - Enumerations
+    - Classes
+    - Module-level functions
 
 ## Third-Party Components
 
@@ -188,14 +188,14 @@ slug: software-development-principles
 ## Unit Testing
 
 - Create a test for each state of a function/object.
-  - Test an exception in a function separately, not in the test targeting the normal functioning
+    - Test an exception in a function separately, not in the test targeting the normal functioning
 - Keep only one `assert` per test.
 - **FIRST**: The tests should be:
-  - Fast
-  - Independent
-  - Repeatable
-  - Self-validating by returning a boolean indicating if it passed or not
-  - Written before the code that make them pass (in a TDD fashion).
+    - Fast
+    - Independent
+    - Repeatable
+    - Self-validating by returning a boolean indicating if it passed or not
+    - Written before the code that make them pass (in a TDD fashion).
 - Name each test `test_<method_or_class>_<state>`.
 - Keep the production-grade standards for test code.
 - The tests can be place into a different `tests` folder or in the same implementation file.

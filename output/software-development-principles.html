@@ -91,52 +91,76 @@
 <h1>Contextual</h1>
 <h2>Naming</h2>
 <ul>
-<li>Use intention-revealing names.</li>
+<li>Use intention-revealing names.<ul>
 <li><code>elapsed_time_in_days</code>, not <code>d</code> (context-dependent)</li>
 <li><code>game_board</code>, not <code>the_list</code> (context-dependent)</li>
-<li>Avoid disinformation.</li>
+</ul>
+</li>
+<li>Avoid disinformation.<ul>
 <li><code>accounts</code>, not <code>accounts_list</code> (linked to the implementation, namely an iterable of type <code>list</code>)</li>
-<li>Make meaningful distinction between variables with close names.</li>
+</ul>
+</li>
+<li>Make meaningful distinction between variables with close names.<ul>
 <li><code>money</code> and <code>money_amount</code> are the same when used in the same context.</li>
 <li>There is no difference between <code>Product</code>, <code>ProductData</code> and <code>ProductInfo</code> due to the noise words used as suffixes.</li>
-<li>Use pronounceable names.</li>
+</ul>
+</li>
+<li>Use pronounceable names.<ul>
 <li><code>generation_timestamp</code>, not <code>gen_time_ymdhms</code></li>
-<li>Use searchable names.</li>
+</ul>
+</li>
+<li>Use searchable names.<ul>
 <li>Too generic search when using <code>7</code>. A constant named <code>DAYS_IN_WEEK</code> is better.</li>
-<li>Avoid encodings, mental mapping, prefixes, and type information.</li>
+</ul>
+</li>
+<li>Avoid encodings, mental mapping, prefixes, and type information.<ul>
 <li><code>multiplication_factor</code>, not simply <code>f</code></li>
 <li><code>__users</code>, not <code>__private_users</code></li>
 <li><code>accounts</code>, not <code>accounts_dictionary</code></li>
-<li>Avoid abstract words such as:</li>
+</ul>
+</li>
+<li>Avoid abstract words such as:<ul>
 <li><code>processor</code></li>
 <li><code>data</code></li>
 <li><code>info</code></li>
 <li><code>controller</code></li>
 <li><code>manager</code></li>
-<li>Functions should have verbs in their names.</li>
+</ul>
+</li>
+<li>Functions should have verbs in their names.<ul>
 <li><code>pay_employee()</code>, not <code>new_payment()</code></li>
-<li>Don't be cute or use puns.</li>
+</ul>
+</li>
+<li>Don't be cute or use puns.<ul>
 <li>Plain <code>kill()</code>, not <code>whack()</code></li>
-<li>Make the names context-specific</li>
+</ul>
+</li>
+<li>Make the names context-specific<ul>
 <li>A <code>zipcode</code> in a context where <code>source_address</code> and <code>destination_address</code> can refer to any of them. Transform it into <code>source_zipcode</code> or <code>destination_zipcode</code>.</li>
+</ul>
+</li>
 </ul>
 <h2>Comments</h2>
 <ul>
-<li>Use code to document the code.</li>
+<li>Use code to document the code.<ul>
 <li><code>employee.is_eligible_for_full_benefits()</code>, not <code>if (employee.has_flag(HOURLY) &amp;&amp; employee.age &gt; 65) // check if the employee is eligible for full benefits</code></li>
-<li>Use good comments:</li>
+</ul>
+</li>
+<li>Use good comments:<ul>
 <li>Legal, for example copyrights</li>
 <li>Description of a decision</li>
 <li><code>TODO</code> comments</li>
-<li>Avoid bad comments:</li>
-<li>Dependent information, such as constants values and parameters names that could be changed in future implementations</li>
-<li>Commented-out code<ul>
-<li>Just remove it, you have <code>git</code> to restore it if you need to.</li>
 </ul>
 </li>
+<li>Avoid bad comments:<ul>
+<li>Dependent information, such as constants values and parameters names that could be changed in future implementations</li>
+<li>Commented-out code</li>
+<li>Just remove it, you have <code>git</code> to restore it if you need to.</li>
 <li>Journal comments (use <code>git blame</code> instead)</li>
 <li>Position markers, such as <code>// Public methods</code></li>
 <li>Obvious comments, such as <code>// Defaults constructor</code></li>
+</ul>
+</li>
 </ul>
 <h2>Lines of Code</h2>
 <ul>
@@ -148,12 +172,18 @@
 <h2>Functions</h2>
 <h3>Functionality</h3>
 <ul>
-<li>Do one thing.</li>
+<li>Do one thing.<ul>
 <li><code>save_page_to_file</code> calls multiple functions to: download page and write the content to a file. It does not execute this whole functionality on its own.</li>
-<li>Only one level of abstraction per function</li>
+</ul>
+</li>
+<li>Only one level of abstraction per function<ul>
 <li>A function <code>get_links_from_html_page</code> downloads the page and calls another function to search the effective text with a RegEx (which is at another abstraction level).</li>
-<li>Do only what's expected.</li>
+</ul>
+</li>
+<li>Do only what's expected.<ul>
 <li>A <code>check_password</code> function will not initialize a session.</li>
+</ul>
+</li>
 </ul>
 <h3>Structure</h3>
 <ul>
@@ -188,8 +218,10 @@
 <li>Avoid hybrids (half class, half data structure), namely classes with exposed members.</li>
 <li><strong>Single Responsibility Principle</strong> (abbreviated SRP) or <strong>High Cohesion</strong>: A class should have one and only one reason to change.</li>
 <li><strong>Low coupling</strong>: A class should have the least possible dependencies.</li>
-<li><strong>Dependency injection</strong>: Delegate secondary responsibilities to another objects that are dedicated for that purpose.</li>
+<li><strong>Dependency injection</strong>: Delegate secondary responsibilities to another objects that are dedicated for that purpose.<ul>
 <li>Do not manage the profile picture in a <code>User</code> class, just create a new <code>ProfilePicture</code> one that manages itself.</li>
+</ul>
+</li>
 <li><strong>Composition over Inheritance</strong> (abbreviated CoI): Prefer embedding of different objects within another object (according to the dependency injection principle) instead of inheritance. The latter will expose all the public methods of the parent class and is limited by some programming languages (for example, multiple inheritance could not be achieved).</li>
 <li><strong>Interface Segregation Principle</strong> (abbreviated ISP): A client should not have access to methods it doesn't use. If a broader interface is used, another interface (called role interface) can be created to limit the exposed methods.</li>
 <li><strong>Liskov Substitution Principle</strong> (abbreviated LSP): If a class is substituted with any of its subclasses, the program should work well. This implies that the return types and exceptions types remains the same. In addition, no side effect is introduced.</li>
@@ -201,8 +233,10 @@
 </ul>
 <h3>Methods</h3>
 <ul>
-<li><strong>Law of Demeter</strong>: A method should not know about the implementation of an object it manipulates.</li>
+<li><strong>Law of Demeter</strong>: A method should not know about the implementation of an object it manipulates.<ul>
 <li><code>user.profile_picture.badge</code>, not <code>user.get_profile_picture().get_badge()</code>.</li>
+</ul>
+</li>
 <li>If a method does not use the parent object, transform it into a <code>@staticmethod</code>.</li>
 </ul>
 <h3>Members</h3>
@@ -221,13 +255,15 @@
 <li>Avoid huge files (over some hundreds LoCs).</li>
 <li>Place the called functions after the callee. The code can be read as a newspaper.</li>
 <li>Add a docstring describing the source code functionality.</li>
-<li>Maintain a predictable structure:</li>
+<li>Maintain a predictable structure:<ul>
 <li>Imports</li>
 <li>Constants</li>
 <li>Type annotations aliases</li>
 <li>Enumerations</li>
 <li>Classes</li>
 <li>Module-level functions</li>
+</ul>
+</li>
 </ul>
 <h2>Third-Party Components</h2>
 <ul>
@@ -254,15 +290,19 @@
 </ul>
 <h2>Unit Testing</h2>
 <ul>
-<li>Create a test for each state of a function/object.</li>
+<li>Create a test for each state of a function/object.<ul>
 <li>Test an exception in a function separately, not in the test targeting the normal functioning</li>
+</ul>
+</li>
 <li>Keep only one <code>assert</code> per test.</li>
-<li><strong>FIRST</strong>: The tests should be:</li>
+<li><strong>FIRST</strong>: The tests should be:<ul>
 <li>Fast</li>
 <li>Independent</li>
 <li>Repeatable</li>
 <li>Self-validating by returning a boolean indicating if it passed or not</li>
 <li>Written before the code that make them pass (in a TDD fashion).</li>
+</ul>
+</li>
 <li>Name each test <code>test_&lt;method_or_class&gt;_&lt;state&gt;</code>.</li>
 <li>Keep the production-grade standards for test code.</li>
 <li>The tests can be place into a different <code>tests</code> folder or in the same implementation file.</li>
