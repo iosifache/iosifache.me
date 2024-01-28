@@ -445,6 +445,7 @@ slug: fundamentals-of-software-architecture
 ### Dosing the Control
 
 For each aspect below, add or subtract 20 from a baseline 0.
+
 - Team familiarity
 - Team size
 - Overall experience
@@ -462,6 +463,7 @@ For each aspect below, add or subtract 20 from a baseline 0.
 ### Using Checklists
 
 Examples of checklists that can be offered to the development team are:
+
 - Code Completion Checklist: When the developer states that the task is done.
 - Unit and Functional Testing Checklist
 - Software Release Checklist.
@@ -485,7 +487,7 @@ Examples of checklists that can be offered to the development team are:
 - Bandwidth is infinite.
 - The network is secure.
 - The topology never changes.
-- The is only one administrator.
+- There is only one administrator.
 - Transport cost is zero.
 - The network is homogeneous (with equipment only from one vendor).
 
