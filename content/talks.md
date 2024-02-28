@@ -1,6 +1,6 @@
 ---
 title: Talks
-date: 2023-11-25 19:09
+date: 2024-02-28 23:40
 slug: talks
 status: hidden
 ---
@@ -28,3 +28,6 @@ In parallel with the effort to demonstrate that the barrier to entry for softwar
 The most recent speaking opportunity was in **[DefCamp](https://def.camp) 2023**: a 30-minute talk called "*The Open Source Fortress: Finding Vulnerabilities in Your Codebase Using Open Source Tools*" ([listing page](https://def.camp/speaker/george-andrei-iosif-2/) and [slides](https://ossfortress.io/defcamp)). It presented the main vulnerability detection techniques and tools covered in [The Open Source Fortress](https://ossfortress.io/).
 
 ![Photo from DefCamp 2023](images/talks/defcamp_23.jpg)
+
+I'm currently preparing for [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x), the largest community-organised open-source conference in North America. The content of the presentation ([listing page](https://www.socallinuxexpo.org/scale/21x/presentations/open-source-fortress)) will be similar to the one from DefCamp, but the available time will be twice as much, which will aid in covering a broader range of topics and providing more detailed explanations.
+
