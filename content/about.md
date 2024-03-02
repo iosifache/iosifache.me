@@ -11,6 +11,7 @@ You can also find me on other corners of the Internet:
 
 - `hi at iosifache dot me`;
 - [X](https://x.com/iosifache);
+- [Mastodon](https://infosec.exchange/@iosifache);
 - [GitHub](https://github.com/iosifache);
 - [Strava](https://www.strava.com/athletes/21752167); and
 - [Instagram](https://instagram.com/iosifache).
