@@ -106,6 +106,44 @@
 </li>
 <li>Publishing date: February 2022</li>
 <li>PDF: <a class="external-links" href="https://dl.acm.org/doi/pdf/10.1145/3469659">ACM Digital Library</a></li>
-</ul>     </main>
+</ul>
+<h1>Transcript</h1>
+<h2>Introduction</h2>
+<p>Hi!</p>
+<p>My name is Andrei. I’m a new member of the security team from Ubuntu, and I’m thrilled to be now part of this podcast.</p>
+<p>We'll begin a <strong>new segment</strong> today, in which we will delve further into academia and examine papers on cybersecurity. We will analyze them to understand the ideas put forth by the authors, the reason they are novel, and how security professionals might employ these ideas in their research, development, or analysis.</p>
+<p>"Modeling Realistic Adversarial Attacks against Network Intrusion Detection Systems" is the title of the study that we will be looking at today. The work was published in ACM's Digital Threats journal by five academics from Italy and Liechtenstein. It's one of the most cited cybersecurity papers from 2022, and it examines the intersection of computer security and one of the fastest growing domains right now, artificial intelligence.</p>
+<h2>Key Topics</h2>
+<p>We will set the stage by introducing the <strong>key topics</strong>.</p>
+<p>One way for classifying security mechanisms in a computer network is to evaluate where they are located.</p>
+<p><strong>Host-based solutions</strong> are those that are deployed on a host within that network. It is a program that runs continually, infrequently, or on demand that searches various areas of that particular host. The host-based scanning varies from normal files and processes, as in Clam AntiVirus, to kernel virtual memory, as in The Rootkit Hunter Project.</p>
+<p>The analysis of communication between hosts in the network is another method for spotting malicious behavior. A security solution might examine a packet's payload, like the domain contained in a DNS query. Because this strategy is not practical for encrypted packets, such as DNS over HTTPS, other solutions inspect metadata, which is information that describes the participants, payload, and metrics about the communication. The destination MAC address, the cipher suite used during a TLS handshake, and the time interval between two successive ICMP packets are a few examples of metadata of each kind.</p>
+<p>To mention a few <strong>network-based safeguards</strong>, we have the Uncomplicated Firewall, Arkime as a full packet capture, and Suricata, which can operate in two modes: intrusion detection and intrusion prevention.</p>
+<p><strong>Machine learning</strong> is another topic to take into account. As its adoption in recent years has enabled society to develop novel answers to complicated problems, the cybersecurity industry has not been overlooked. The focus has primarily been on spam detectors and antimalware programs, although other research in academia and industry has examined the use of ML in network intrusion detection systems.</p>
+<p>But how exactly do these <strong>ML-IDSes</strong> operate? Both during training and production, the models do the same analysis on a packet. It is parsed to determine its fields, and some attributes are retrieved from the raw data to create a classification that determines whether the packet is benign or malicious, in the latter case an alarm is generated. Training and production are different in that the former employs samples that are pre-collected while the latter analyzes ones that have never been seen before.</p>
+<h2>Attacks against ML-IDSes</h2>
+<p>Up to this point, everything seems fine, but an arms race is taking place. As defenders implement more sophisticated solutions in their infrastructures, hostile actors devise <strong>innovative adversarial attacks against these AI-based systems</strong>, in which they fool the model into forecasting results in their favor. This could indicate, for instance, DoS attacks by misclassifying legitimate requests as malicious or the use of exploits by misclassifying malicious requests as legitimate.</p>
+<p>Having stated that, the goal of the study is to develop a <strong>realistic theoretical model</strong> of how these attackers may look.</p>
+<h2>Power</h2>
+<p>The extent to which the attacker has control over the ML-based intrusion detection system is how the authors define the idea of power. It was divided into <strong>5 factors</strong>, each of which offers a unique description of the attacker's strength.</p>
+<p>Let's look into each of them!</p>
+<p>To begin, we have <strong>knowledge of the training data</strong>. If the attacker gets read access to the dataset, she could examine the data to look for patterns among samples that were labeled as harmless. Do all the dataset's benign ELF files have PIE, ASLR, and canaries enabled? Then, let's develop malware that acts as a dropper and has the same security features enabled. The likelihood of malware being discovered is decreased in this way. Additionally, if the attacker has write privileges, she may inject harmful samples to be categorized as benign.</p>
+<p>Secondly, the attacker might be aware of the <strong>feature set</strong>, meaning the specific data from the sample that the IDS examines in order to make a forecast. If the attacker is aware that ELF sections with unusual names are not inspected by the ML-IDS, the malware can transfer its dangerous code from the .text section to a strangely named one.</p>
+<p>The knowledge of the <strong>detection model</strong>, specifically the algorithm and its parameters, is another factor that contributes to modeling power. The authors don't insist on this unrealistic detail because the only way to know it is to completely compromise the IDS.</p>
+<p>Fourth, the attacker might possess <strong>oracle abilities</strong>, which would allow him to submit some inputs and observe the accompanying predictions. Unfortunately for him, he might run into two problems. There may be additional security solutions installed that detect a huge number of requests to the ML-IDS, causing him to be identified. On the other hand, it could be challenging for the attacker to learn the outcome of the forecast. Since we are talking about IDSes rather than IPSes, the detections are likely routed into a SIEM, a system that is difficult to hack.</p>
+<p>The <strong>depth of the manipulation</strong> is the final variable in the concept of power. Can the attacker just change raw data, like fields in a DNS request? Or can she manipulate high-level representations, such as the combination of fields in that request that are specific to a model?</p>
+<h2>Plausible Attacks</h2>
+<p>Thus, the authors' conclusion was that the following attack is the <strong>most plausible one</strong>:</p>
+<ol>
+<li>Manipulation of raw data and not high-level abstractions;</li>
+<li>Partial knowledge about the extracted features;</li>
+<li>No oracle power; and</li>
+<li>No access to the training data.</li>
+</ol>
+<h2>Papers Analysis</h2>
+<p>The document displays a table categorizing various studies published up until March 2021 by using analysis with these 5 power variables in mind. It cites a paper from 2019 as a <strong>suitable example</strong>, in which an attacker reduced the 99% detection rate to 70%, all under real-world conditions.</p>
+<h2>Conclusions</h2>
+<p>In <strong>conclusion</strong>, the first edition of this new podcast section covered modeling realistic attacks on ML-based intrusion detection systems. After observing the differences between host-based and network-based security solutions, we discovered the notion of attack power, which consists of five pillars: oracle power, manipulation depth, and knowledge of the training data, feature set, and detection model.</p>
+<p>If you have any <strong>recommendations</strong> for improving this section, please contact us at <code>securitiy@ubuntu.com</code>. Until next time!</p>     </main>
   </body>
 </html>
