@@ -14,6 +14,7 @@ Because I joined the team just before finishing my master's degree, I suggested 
 
 The papers that I described, as well as the episodes in which they appeared, are as follows:
 
+- ["*Bad Snakes: Understanding and Improving Python Package Index Malware Scanning*" in Ubuntu Security Podcast 221](/usp-221);
 - ["*Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities*" in Ubuntu Security Podcast 209](/usp-209);
 - ["*FLAME: Taming Backdoors in Federated Learning*" in Ubuntu Security Podcast 204](/usp-204);
 - ["*Fuzzing Configurations of Program Options*" in Ubuntu Security Podcast 199](/usp-199); and
