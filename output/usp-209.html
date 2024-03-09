@@ -98,6 +98,67 @@
 </li>
 <li>Publishing date: August 2023</li>
 <li>PDF: <a class="external-links" href="https://arxiv.org/pdf/2308.15259.pdf">arXiv</a></li>
-</ul>     </main>
+</ul>
+<h1>Transcript</h1>
+<p>Hi, Alex!</p>
+<p>After discussing backdoors in federated learning, fuzzing, and network intrusion detection systems, this episode will cover a topic that most cybersecurity professionals are aware of: the vulnerability severity scoring system CVSS.</p>
+<h2>Today’s paper</h2>
+<p>We'll look at a study that was only released a month ago on arXiv: "Shedding Light on CVSS Scoring Inconsistencies: A User-Centric Study on Evaluating Widespread Security Vulnerabilities". Its goal is to analyse in a methodical manner how security professionals assign CVSS scores to the vulnerabilities that they are researching.</p>
+<h2>CVSS</h2>
+<p>CVSS stands for Common Vulnerability Scoring System, and it is a system for determining the severity of a vulnerability. It enables security experts to assign a number between 0 and 10, which can then be used in operational processes such as patch prioritization.</p>
+<p>It began as a study initiative of the National Infrastructure Advisory Council, which publicly revealed the first CVSS proposal on the Department of Homeland Security's website in February 2005. Furthermore, it is currently owned and administered by FIRST, a non-profit organization based in the United States whose aim is to assist incident response teams worldwide. At the moment, the National Vulnerability Database, which is part of the National Institute of Standards and Technologies in the United States, is in charge of determining the CVSS score for  each CVE issued by MITRE.</p>
+<p>There are a number of documents that define the scoring system.</p>
+<ol>
+<li>
+<p>The first document is the Specification, which defines the metrics, formulas, qualitative rating scale, and vector strings.</p>
+</li>
+<li>
+<p>Second, the User Guide includes specific use cases, scoring guidelines, and a glossary of terms used in both the Specification and the User Guide.</p>
+</li>
+<li>
+<p>The final pillar document is Examples, which contains over 30 vulnerabilities as well as their CVSS assessments.</p>
+</li>
+</ol>
+<p>The Specification document defines three metrics groups, each of which includes many metrics that describe the vulnerability:</p>
+<ol>
+<li>
+<p>The first, and most common, is the Base metric group. It provides metrics for the fundamental aspects of the vulnerability, such as the attack vector, attack complexity, privileges necessary, user involvement, scope, and the three parts of the CIA triad (confidentiality, integrity, and availability).</p>
+</li>
+<li>
+<p>The second set is optional and environment-specific: three of them correspond to the requirements of the elements included in the CIA triad, while the others are modified versions of the metrics from the Base score.</p>
+</li>
+<li>
+<p>The last group is similarly optional and pertains to a certain point in time. Metrics for exploit code maturity, remediation level, and report confidence are included.</p>
+</li>
+</ol>
+<p>Of these three, only the Base metric is usually used and the other two (environment and temporal) are generally ignored. After all of these measures have been defined, a vector string (which describes the CVSS Base metric in an abbreviated form) and corresponding score can be calculated. For example, the CVSS score which rated <code>AV:L/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H</code> is calculated to have a score of 8.1.</p>
+<p>The score can then be grouped into ranges of severity, ranging from None for a score of 0.0 through Low, Medium, High and Critical. For example, a vulnerability is referred to as high severity if its score is between 7.0 and 8.9.</p>
+<p>With all of this theoretical knowledge, let's look at how this is used in practice to determine the severity of the well-known CVE-2014-0160 referred to as Heartbleed. In a nutshell, this vulnerability was that TLS and DTLS implementations from certain OpenSSL releases could not properly accept Heartbeat Extension packets, allowing a remote attacker to leak information from process memory.</p>
+<p>Because the vulnerable services that use OpenSSL are network-based, the attack vector is set to network. An attacker needs no privileges, no user interaction, and only needs to find the service's listening port, hence the attack complexity is simple. The exploitation has no effect on the initial scope of the vulnerable component and is evaluated as high in terms of confidentiality, integrity, and availability because it may end in a complete compromise.</p>
+<p>Following the explanation of these criteria, the ratings are entered into the CVSS formulae to obtain the CVSS score for Heartbleed, which is 7.5.</p>
+<h1>CVSS Misuse</h1>
+<p>Despite the fact that the purpose of CVSS is to represent the severity of a vulnerability with a clearly determined number, the researchers stated that prior articles suggested that businesses use this metric for risk. The approach is incorrect because these are two distinct concepts. The risk may be regarded as a function of severity, likelihood, and other characteristics, depending on the risk assessment approach used. For example, Heartbleed's severity may be 7.5, but to a given organization that only has a single isolated server in their corporate infrastructure running a vulnerable version of OpenSSL, the risk could be considered to be low.</p>
+<p>The current paper examines the use of CVSS ratings by security professionals. We will first discuss the study's structure, then the research questions and the researchers' conclusions about them, and finally the researchers' recommendations. The parts that follow will also include demographic information because it is necessary to understand the research setting and potential biases.</p>
+<h2>Research structure</h2>
+<p>The first stage of the research was completed in June 2020. The researchers met with three so-called discussion experts, which are infosec experts with approximately 10 years experience in the industry. They were all men between the ages of 30 and 50, with a Master's or a PhD who worked for themselves or for international corporations.</p>
+<p>The discussions focused on the experts' typical working day, their CVSS experience, and elements of CVSS and vulnerability types (namely CWEs) that frequently cause ambiguity or disagreement. Furthermore, they had selected ten vulnerabilities to be investigated in an expert survey.</p>
+<p>Following the discussion, influencing factors and problematic vulnerabilities were extracted and selected for analysis, as were two drive-by downloads, a reflected and a stored XSS, one Machine-in-the-Middle attack, one SQL injection, one banner disclosure, one missing <code>HTTPOnly</code> flag, and another for flag security deficiency.</p>
+<p>The next stage was an online expert study that was conducted by the end of 2020 with 18 CVSS experts who use CVSS in their daily job. The researchers proposed 10 vulnerabilities to be analysed. The conclusions were that the number of examined vulnerabilities should be small, specifically four, and mostly context-independent in order to avoid labelling anything difficult to grasp. Furthermore, unlike prior research that preferred random vulnerability types, they chose widespread vulnerability types, namely those examined on a daily basis, as well as problematic metrics that usually result in discussions.</p>
+<p>Following the end of the preliminary investigation, they chose research subjects and a second round of vulnerabilities to be examined.</p>
+<p>The main survey had 196 participants. Their average age was 38 years old, and they were largely men from European countries such as Germany, the United Kingdom, and the United States. They typically had superior studies, and half considered themselves advanced or experts in CVSS v3.1, whilst twenty percent having little to no prior experience in CVSS.</p>
+<p>A follow-up survey with 59 people was conducted nine months following the primary survey. Participants examined four vulnerabilities: two from the main study and two novel ones. The purpose here was to estimate the consistency of their ratings while remaining unaware that the vulnerabilities originated from the initial study.</p>
+<h2>Research Questions</h2>
+<p>This is the timeline of how the study was carried out, but let's look at the research questions and the researchers' results.</p>
+<p>They first needed to ensure that metrics such as attack vector, user interaction, and scope are consistently analysed for some common vulnerability categories. A stored XSS, as opposed to a reflected XSS, does not require the user to visit a malicious URL. Although the user interaction metric is usually set to None, the official Examples document states that the value Required should be used since the "victim needs to navigate a web page on a vulnerable site" to trigger the vulnerability. Surprisingly, only 58% of those surveyed chose the correct answer.</p>
+<p>The second research question was whether security deficiencies could be assessed using CVSS. The official guideline is that if no damage happens, the severity should be set to 0. Regardless, security deficiencies such as Banner Disclosure or Missing <code>HTTPOnly</code> flags are typically assigned a CVSS score. The first may be thought to have an effect on confidentiality, but the second cannot be directly utilized. The majority of people believe they have a medium impact, with only 9.2 percent believing they have no impact.</p>
+<p>The third research question was to examine whether personal characteristics are connected with variations in CVSS ratings, as prior studies revealed that analyst experience leads to improved accuracy. The researchers inquired about factors such as IT sector experience, frequency, and time required to execute CVSS assignments. According to the survey, 83% of participants use CVSS for severity, 56% for risk assessment procedures, and 59% for prioritization.</p>
+<p>The fourth research question examined evaluators' attitudes regarding CVSS and inquired if the CVSS framework is valuable to them. Three out of four people agreed. On the other side, half of the people thought the scores were inconsistent.</p>
+<p>Finally, the researchers examined if the CVSS ratings are consistent over time, that is, whether the scores given by a participant in the primary trial correspond to the scores given by the same individual in the follow-up study. In just 9 months, an average of 40-47% of participants assessed the same vulnerabilities differently.</p>
+<h2>Recommendations</h2>
+<p>The study finishes with suggestions for the non-profit organization FIRST. The researchers propose explicit rules, correcting observed disparities, and reevaluating measures that are not well understood in the community, such as Changed Scope.</p>
+<h2>Conclusions</h2>
+<p>We've seen what the CVSS scoring is for and how it's calculated based on metrics and metrics groups. As the academic community observed that the system can be misused to determine the priority of a vulnerability, the researchers used a solid approach to answer several research questions, such as whether problematic metrics are well understood, whether the same security professional assesses the same severity for a vulnerability over a period of several months, and whether CVSS is used only for severity or for other processes such as prioritization.</p>
+<p>If you want more information on how the Ubuntu Security Team prioritizes vulnerabilities, you can find this on the Ubuntu blog, with the link in the show notes. As always, if you have a suggestion for a topic to be explored here, please email us at <code>security@ubuntu.com</code>.</p>
+<p>This concludes the fourth iteration of this section. I will now hand you over to Alex, who will continue our Ubuntu Security Podcast episode!</p>     </main>
   </body>
 </html>
