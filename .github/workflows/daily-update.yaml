@@ -24,11 +24,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: iosifache/sec-feeds
-          path: /tmp
+          path: tmp
           sparse-checkout: |
             feeds
       - name: Copy the feeds
-        run: cp /tmp/feeds/*.xml content/feeds
+        run: cp tmp/feeds/*.xml content/feeds
+      - name: Removes the clone
+        run: rm tmp
       - name: Compile the Pelican website
         run: poetry run pelican
       - name: Commit the changes
