@@ -1,14 +1,14 @@
-name: Update the OSS page
+name: Daily update
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "1 0 * * *"
 jobs:
-  update-readme:
+  updater:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -21,6 +21,14 @@ jobs:
         run: |
           wget -O PROFILE.md https://raw.githubusercontent.com/iosifache/iosifache/main/README.md
           python3 scripts/profile-readme-convert.py PROFILE.md content/oss.md
+      - uses: actions/checkout@v4
+        with:
+          repository: iosifache/sec-feeds
+          path: /tmp
+          sparse-checkout: |
+            feeds
+      - name: Copy the feeds
+        run: cp /tmp/feeds/*.xml content/feeds
       - name: Compile the Pelican website
         run: poetry run pelican
       - name: Commit the changes

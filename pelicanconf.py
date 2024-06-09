@@ -46,3 +46,8 @@ LINKCLASS = (
     ("EXTERNAL_CLASS", "external-links"),
     ("INTERNAL_CLASS", "internal-links"),
 )
+
+
+# Static folders
+
+STATIC_PATHS = ["feeds"]
