@@ -30,7 +30,7 @@ jobs:
       - name: Copy the feeds
         run: cp tmp/feeds/*.xml content/feeds
       - name: Removes the clone
-        run: rm tmp
+        run: rm -rf tmp
       - name: Compile the Pelican website
         run: poetry run pelican
       - name: Commit the changes
