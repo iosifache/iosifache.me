@@ -27,8 +27,6 @@ jobs:
           path: tmp
           sparse-checkout: |
             feeds
-      - name: Lists
-        run: ls tmp/ && ls tmp/feeds/
       - name: Copy the feeds
         run: cp tmp/feeds/*.xml content/feeds
       - name: Removes the clone
@@ -37,7 +35,7 @@ jobs:
         run: poetry run pelican
       - name: Commit the changes
         run: |
-          git add content/oss.md output/oss.html
+          git add content/oss.md output/oss.html output/feeds
           git config --global user.name "OSS page updater"
           git config --global user.email "username@users.noreply.github.com"
           git commit -a -m "Updates the OSS page"
