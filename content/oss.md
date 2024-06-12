@@ -1,6 +1,6 @@
 ---
 title: Open source projects
-date: 2024-06-11 01:33
+date: 2024-06-12 01:33
 slug: oss
 status: hidden
 ---
@@ -65,7 +65,7 @@ I've also contributed to 21 repositories over the years.
 | <sup><sub>[`iosifache/ctfd-plugins`](https://github.com/iosifache/ctfd-plugins) 🪞📦</sub></sup>                                     | <sup><sub>Fork of the collection with CTFd plugins 🪞 </sub></sup>        | <sup><sub>`#security` `#development`</sub></sup> | <img height='12px' alt='Created on: Nov%202023' src='https://img.shields.io/badge/Created%20on-Nov%202023-black'/> <img height='12px' alt='Last push on: Nov%202023' src='https://img.shields.io/badge/Last%20push%20on-Nov%202023-green'/> <img height='12px' alt='Stars: 0' src='https://img.shields.io/badge/Stars-0-yellow'/>   |
 | <sup><sub>[`iosifache/nextjs-notion-blog`](https://github.com/iosifache/nextjs-notion-blog) 🪞📦</sub></sup>                         | <sup><sub>Retired Next.js + Notion personal website 🌐</sub></sup>        | <sup><sub>`#development`</sub></sup>             | <img height='12px' alt='Created on: Jan%202023' src='https://img.shields.io/badge/Created%20on-Jan%202023-black'/> <img height='12px' alt='Last push on: Feb%202023' src='https://img.shields.io/badge/Last%20push%20on-Feb%202023-green'/> <img height='12px' alt='Stars: 0' src='https://img.shields.io/badge/Stars-0-yellow'/>   |
 | <sup><sub>[`iosifache/velociraptor`](https://github.com/iosifache/velociraptor) 🪞📦</sub></sup>                                     | <sup><sub>Fork of Velociraptor's repository, an endpoint ...</sub></sup> | <sup><sub>`#security`</sub></sup>                | <img height='12px' alt='Created on: Jul%202022' src='https://img.shields.io/badge/Created%20on-Jul%202022-black'/> <img height='12px' alt='Last push on: Jul%202022' src='https://img.shields.io/badge/Last%20push%20on-Jul%202022-green'/> <img height='12px' alt='Stars: 0' src='https://img.shields.io/badge/Stars-0-yellow'/>   |
-| <sup><sub>[`open-crs/zeratool_lib`](https://github.com/open-crs/zeratool_lib) 🪞</sub></sup>                                        | <sup><sub>Python 3 library for automatic exploit generati...</sub></sup> | <sup><sub>`#security` `#masters`</sub></sup>     | <img height='12px' alt='Created on: May%202023' src='https://img.shields.io/badge/Created%20on-May%202023-black'/> <img height='12px' alt='Last push on: May%202023' src='https://img.shields.io/badge/Last%20push%20on-May%202023-green'/> <img height='12px' alt='Stars: 6' src='https://img.shields.io/badge/Stars-6-yellow'/>   |
+| <sup><sub>[`open-crs/zeratool_lib`](https://github.com/open-crs/zeratool_lib) 🪞</sub></sup>                                        | <sup><sub>Python 3 library for automatic exploit generati...</sub></sup> | <sup><sub>`#security` `#masters`</sub></sup>     | <img height='12px' alt='Created on: May%202023' src='https://img.shields.io/badge/Created%20on-May%202023-black'/> <img height='12px' alt='Last push on: Jun%202024' src='https://img.shields.io/badge/Last%20push%20on-Jun%202024-green'/> <img height='12px' alt='Stars: 6' src='https://img.shields.io/badge/Stars-6-yellow'/>   |
 
 
 10 old personal repositories are now archived.
@@ -122,4 +122,4 @@ Normally, I open source all of my code. I also have 10 private repositories that
 
 ---
 
-<sup><sub>A repository with a 🪞 emoji is a fork, and one with a 📦 emoji is archived. This page was automatically generated on 2024-06-11 01:23 UTC with [GitPortfolio](https://github.com/iosifache/gitportfolio).</sub></sup>
+<sup><sub>A repository with a 🪞 emoji is a fork, and one with a 📦 emoji is archived. This page was automatically generated on 2024-06-12 01:23 UTC with [GitPortfolio](https://github.com/iosifache/gitportfolio).</sub></sup>
