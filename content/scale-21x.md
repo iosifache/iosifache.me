@@ -5,7 +5,7 @@ tags:
   - scale
   - status-update
 date: 2024-03-04
-slug: scale
+slug: scale-21x
 ---
 
 In less than two weeks, the open source community will host [SCaLE 21x](https://www.socallinuxexpo.org/scale/21x), the largest community-led conference in North America.
