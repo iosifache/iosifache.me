@@ -23,11 +23,11 @@ The work began with a suggestion from my coordinator, Adrian-Răzvan Deaconescu.
 
 Despite the passing of seven years, the open source CRS landscape has remained unchanged. This observation was the source of the story's intrigue and the impetus for a joint endeavour with Claudiu Ghenea to create an open source cyber reasoning system, OpenCRS.
 
-Fast forward to today, and we've completed the majority of the modules that comprise a CRS. Personally, I contributed to the development of several modules that are now housed in the [OpenCRS organization on GitHub](https://github.com/CyberReasoningSystem):
-- A dataset ([module](https://github.com/CyberReasoningSystem/dataset) and [resulting dataset](https://github.com/CyberReasoningSystem/opencrs_dataset)) containing public test suites of vulnerable ELF programs;
-- A [module](https://github.com/CyberReasoningSystem/attack_surface_approximation) that uses static analysis with Ghidra and handcrafted arguments fuzzing with QBDI as a dynamic binary instrumentation engine to estimate the attack surface of an executable;
-- A vulnerability discovery [module](https://github.com/CyberReasoningSystem/vulnerability_detection) that fuzzes using AFL++; and
-- A [module](https://github.com/CyberReasoningSystem/automatic_exploit_generation) focusing on automated exploitation, based on a [fork](https://github.com/CyberReasoningSystem/zeratool_lib) intended to improve an existing open source project.
+Fast forward to today, and we've completed the majority of the modules that comprise a CRS. Personally, I contributed to the development of several modules that are now housed in the [OpenCRS organization on GitHub](https://github.com/open-crs):
+- A dataset ([module](https://github.com/open-crs/dataset) and [resulting dataset](https://github.com/open-crs/opencrs_dataset)) containing public test suites of vulnerable ELF programs;
+- A [module](https://github.com/open-crs/attack_surface_approximation) that uses static analysis with Ghidra and handcrafted arguments fuzzing with QBDI as a dynamic binary instrumentation engine to estimate the attack surface of an executable;
+- A vulnerability discovery [module](https://github.com/open-crs/vulnerability_detection) that fuzzes using AFL++; and
+- A [module](https://github.com/open-crs/automatic_exploit_generation) focusing on automated exploitation, based on a [fork](https://github.com/open-crs/zeratool_lib) intended to improve an existing open source project.
 
 Aside from that, my thesis, "OpenCRS: Attack Surface Approximation, Vulnerabilities Discovery, and Automatic Exploitation of Binaries", is [available on GitHub](https://github.com/iosifache/MastersThesis). Because there were no updated templates, I generated [several](https://github.com/cs-pub-ro/templates/pull/1) in the hopes that they will be merged and used by future generations in the department.
 

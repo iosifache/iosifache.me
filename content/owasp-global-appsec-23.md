@@ -22,7 +22,7 @@ Here are my personal favourites:
 
 ## Threat Modelling: From None to Done
 
-John DiLeo, a Solution Architecture Lead at [IriusRisk](https://www.iriusrisk.com/) and the OWASP leader in New Zealand, led the 7-hour workshop. The presented workflow had a **shift-left approach**, prioritising security investments as near to the design phase as possible. This contrasts with the prior shift-right model, in which security personnel were focused on incident response on an inadequate infrastructure.
+John DiLeo, a Solution Architecture Lead at [IriusRisk](https://iriusrisk.com/) and the OWASP leader in New Zealand, led the 7-hour workshop. The presented workflow had a **shift-left approach**, prioritising security investments as near to the design phase as possible. This contrasts with the prior shift-right model, in which security personnel were focused on incident response on an inadequate infrastructure.
 
 **Threat modelling** is a type of risk analysis in which the most valuable assets (i.e., anything that should be safeguarded from some attackers) and their threats (i.e., anything that could allow someone or anything to obtain, damage, or destroy an asset) are identified.
 

@@ -13,7 +13,7 @@ status: hidden
 - Supporting tech projects and startups:
 	- [Morph](https://trymorph.com/), an async, guided and individual brainstorming tool;
 	- [Noema](https://noemaresearch.com), a suite of solutions for tackling the adversarial capabilities of the generative models;
-	- [OpenCRS](https://github.com/CyberReasoningSystem), an open source cyber reasoning system.
+	- [OpenCRS](https://github.com/open-crs), an open source cyber reasoning system.
 
 <blockquote>
 💡 Inspired by Derek Sivers' <a href="https://sive.rs/nowff">/now</a>

@@ -15,7 +15,7 @@ slug: htw-23
 
 What I liked about this year's conference (and past editions) was the combination of **talks** from well-known people in the startup and product industry, as well as the **opportunity to meet new and familiar faces**. They provide [Brella](https://www.brella.io/), an application that allows attendees to view the agenda as well as other participants who may be of interest to them. In addition, **side events** are planned, the best of which is an after-party on the final conference day organised in partnership with a local startup and technology community.
 
-**AI** was an important topic throughout the conference. Almost every session mentioned **LLMs** and their incorporation into products to provide customers or users with novel features. The same was true for startups with a presentation booth or competing in [**Spotlight**](https://www.howtoweb.co/spotlight-2023/), a contest with a total prize fund of 880,000 EUR (VC-backed and equity-based): the majority of them integrate a form of AI for providing "copilots" or full automation of operations that were previously performed manually by people.
+**AI** was an important topic throughout the conference. Almost every session mentioned **LLMs** and their incorporation into products to provide customers or users with novel features. The same was true for startups with a presentation booth or competing in **Spotlight**, a contest with a total prize fund of 880,000 EUR (VC-backed and equity-based): the majority of them integrate a form of AI for providing "copilots" or full automation of operations that were previously performed manually by people.
 
 # Top 3 events
 
