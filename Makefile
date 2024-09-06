@@ -71,4 +71,7 @@ publish:
 update-reqs:
 	poetry export --without-hashes > requirements.txt
 
+check-broken-links:
+	lychee content
+
 .PHONY: html help clean regenerate serve serve-global devserver publish 
