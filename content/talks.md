@@ -51,4 +51,6 @@ As in the case of the presentations in The Open Source Fortress, the last time I
 
 ## Fuzzing in the open: Integrate your project in OSS-Fuzz for continuous fuzzing
 
-The conference I'm now preparing for is [Ubuntu Summit 2024](https://events.canonical.com/event/51). Because of the great collaboration Jiongchi and I had during [our Google Summer of Code collaboration](https://summerofcode.withgoogle.com/programs/2024/projects/QX4kRWZO), we were accepted to host a 1.5h workshop called "*Fuzzing in the open: Integrate your project in OSS-Fuzz for continuous fuzzing*" ([listing page](https://events.canonical.com/event/51/contributions/540/)). As the title already suggest, it will practically present the insights gained after integrating OpenPrinting's projects into OSS-Fuzz.
+Because of the great collaboration Jiongchi, Dongee, and I had during [our Google Summer of Code collaboration](https://summerofcode.withgoogle.com/programs/2024/projects/QX4kRWZO), we were accepted to host a 1.5h workshop called "*Fuzzing in the open: Integrate your project in OSS-Fuzz for continuous fuzzing*" during [Ubuntu Summit 2024](https://events.canonical.com/event/51) ([listing page](https://events.canonical.com/event/51/contributions/540/)). As the title implies, it provided guidance for open source maintainers on how to integrate their projects with OSS-Fuzz, a fuzzing service run by Google. This guidance was based on insights obtained from integrating OpenPrinting's projects into OSS-Fuzz.
+
+![Photo from Ubuntu Summit 2024](images/talks/ubuntu_summit_24.jpg)

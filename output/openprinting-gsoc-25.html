@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+     <title> @iosifache | New OpenPrinting projects in Google Summer of Code 2025 </title>
+
+    <meta charset="utf-8" />
+    <meta name="generator" content="Pelican" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="/theme/images/favicon.png" type="image/x-icon" />
+           <meta name="tags" content="fuzzing" />
+<meta name="tags" content="audit" />
+<meta name="tags" content="open-source" />
+<meta name="tags" content="status-update" />
+   </head>
+
+  <body>
+    <main class="container">
+      <nav>
+        <ul>
+          <li>
+            <strong>
+              <a href="/"
+                >@iosifache</a
+              >
+            </strong>
+          </li>
+        </ul>
+        <ul>
+          <li><a href="/">Articles</a></li>
+          <li><a href="/oss">Open source</a></li>
+          <li><a href="/talks">Talks</a></li>
+          <li><a href="/podcasts">Podcasts</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/now">Now</a></li>
+        </ul>
+      </nav>
+<h1 class="entry-title">
+  <a
+    href="/openprinting-gsoc-25.html"
+    rel="bookmark"
+    title="Permalink to New OpenPrinting projects in Google Summer of Code 2025"
+    >New OpenPrinting projects in Google Summer of Code 2025</a
+  >
+</h1>
+<div class="post-info">
+  <b>Last updated</b>:
+  <time class="published" datetime="2025-04-07T00:00:00+03:00">
+    Mon 07 April 2025
+  </time>
+    <div class="tags">
+    <b>Tags</b>:     <a href="/tag/fuzzing.html"
+      ><small class="chip">fuzzing</small></a
+    >
+    <a href="/tag/audit.html"
+      ><small class="chip">audit</small></a
+    >
+    <a href="/tag/open-source.html"
+      ><small class="chip">open-source</small></a
+    >
+    <a href="/tag/status-update.html"
+      ><small class="chip">status-update</small></a
+    >
+  </div>
+</div>
+<br /><br />
+<p>I had a flight change in Vienna on a chilly November morning in 2023. At the time, I was still with the Ubuntu Security Team and on my way to Riga for a team sprint and the Ubuntu Summit, where I was set to present a workshop on finding vulnerabilities. Right before boarding, I spotted Till, someone I'd seen around thanks to Canonical and our work in open source. I decided to strike up a conversation, even though we'd never chatted before. What started as small talk soon had us swapping seats so we could chat the whole way to Riga. We dove into discussions about OpenPrinting, the open source printing organisation he leads, and the topic of security came up, especially after I learned that 20 out of their 37 projects were developed in C or C++. I explained fuzzing to him and mentioned Google’s OSS-Fuzz, a free service for critical open source projects, which OpenPrinting qualifies for.</p>
+<p>We kept chatting even after the trip. Since OpenPrinting regularly joins Google Summer of Code under the Linux Foundation, we thought, why not propose <a class="external-links" href="https://wiki.linuxfoundation.org/gsoc/google-summer-code-2024">a project</a>? We were lucky to get Dongge Liu from Google as an extra mentor and Jiongchi Yu, a talented PhD student from Singapore, applied. <a class="external-links" href="https://github.com/OpenPrinting/fuzzing">Jiongchi did an amazing job and set up the initial OSS-Fuzz integration for several projects like cups, libcups, and cups-filter</a>. We even shared what we learned at the 2024 Ubuntu Summit, where open source maintainers in <a class="external-links" href="https://events.canonical.com/event/51/contributions/540/#presentation-materials">the workshop</a> picked up tips on integrating their projects into OSS-Fuzz.</p>
+<p>Following our 2024 success, we're keen to keep working on securing OpenPrinting with <a class="external-links" href="https://wiki.linuxfoundation.org/gsoc/google-summer-code-2025-openprinting-projects#utilizing_oss-fuzz-gen_to_improve_fuzz_testing_for_openprinting_projects">four new GSoC projects</a>:</p>
+<ul>
+<li>Boosting the number of C and C++ projects with OSS-Fuzz integration, possibly using OSS-Fuzz-Gen, which automatically generates harnesses with LLMs;</li>
+<li>Doing the same for other repositories using Go and Python;</li>
+<li>Testing the security of printing protocols through unit testing, differential testing, and fuzz testing; and</li>
+<li>Performing a security audit using both static and dynamic techniques on all OpenPrinting projects.</li>
+</ul>
+<p>Today and tomorrow are the last days to apply. Let me know if you’re eager to contribute or if you know someone who is. Don't let this opportunity jam up like printer firmware on Linux before OpenPrinting worked its magic!</p>     </main>
+  </body>
+</html>
